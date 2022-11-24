@@ -19,15 +19,14 @@ def rep(p):
 # n should be a power of 2
 def fft(v, inv=False):
     n = len(v)
-    if n == 1:
-        return v
-    ye, yo = fft(v[::2], inv), fft(v[1::2], inv)
-    y = [0]*n
+    if n == 1: return v
+    ye, yo = fft(v[::2], inv), fft(v[1::2], inv) 
+    y, a, wj = [0]*n, (2-4*inv)*pi/n, 1
+    w = complex(cos(a), sin(a))
     for i in range(n//2):
-        a = (2-4*inv)*pi*i/n
-        wj = complex(cos(a), sin(a))
         y[i] = ye[i] + wj * yo[i]
         y[i + n//2] = ye[i] - wj * yo[i]
+        wj *= w
     return y
 
 # Multiply two polynomials
