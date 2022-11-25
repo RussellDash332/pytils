@@ -16,6 +16,7 @@ for v in g:
 top = []
 while q:
     u = q.popleft()
+    top.append(u)
     if u in g:
         for v in g[u]:
             indeg[v] -= 1
