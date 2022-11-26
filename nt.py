@@ -34,3 +34,13 @@ def inv_mod(a, m):
         raise Exception
     else:
         return x % m
+
+# CRT, x mod lcm(m, n) where x = a mod m and x = b mod n
+def crt(a, m, b, n):
+    d = gcd(m, n)
+    k = m * n // d
+    if (a - b) % d != 0:
+        print('no solution')
+    else:
+        u, _ = bezout(m, n)
+        return (a - m * u * (a - b) // d) % k
