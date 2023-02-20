@@ -50,13 +50,13 @@ class AVL:
         return self.helper_find_max(t.right)
 
     def successor(self, v):
+        self.insert(v)
         vp = self.helper_search(self.root, v)
-        if vp == None:
-            return -1
-        else:
-            return self.helper_successor(vp)
+        k = self.helper_successor_plus(vp)
+        self.delete(v)
+        return k
 
-    def helper_successor(self, t):
+    def helper_successor_plus(self, t):
         if t.right != None:
             return self.helper_find_min(t.right)
         else:
