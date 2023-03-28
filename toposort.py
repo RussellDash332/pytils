@@ -1,11 +1,11 @@
 from collections import deque
 import sys
-sys.setrecursionlimit(10**5)
+sys.setrecursionlimit(10**4)
 
 g = {}
 
 # Kahn's algorithm
-indeg, q = {}, deque([])
+indeg, q, top = {}, deque(), []
 for v in g:
     for w in g[v]:
         if w not in indeg: indeg[w] = 0
@@ -13,7 +13,6 @@ for v in g:
 for v in g:
     if v not in indeg:
         q.append(v)
-top = []
 while q:
     u = q.popleft()
     top.append(u)
@@ -24,14 +23,12 @@ while q:
 print(top)
 
 # DFS toposort
-top = []
-vis = set()
+top, vis = [], set()
 def DFS(s):
     vis.add(s)
     if s in g:
         for v in g[s]:
-            if v not in vis:
-                DFS(v) 
+            if v not in vis: DFS(v)
     top.append(s)
 DFS(0)
 top.reverse()
