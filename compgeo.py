@@ -6,9 +6,6 @@ def dist(a, b):
 def dot(a, b):
     return a[0]*b[0] + a[1]*b[1]
 
-def cross(a, b):
-    return a[0]*b[1] - a[1]*b[0]
-
 def norm(a):
     return hypot(*a)
 
@@ -17,10 +14,10 @@ def angle(a, o, b):
     return acos(dot(v1, v2)/(norm(v1)*norm(v2)))
 
 def ccw(p, q, r):
-    v1, v2 = (q[0]-p[0], q[1]-p[1]), (r[0]-p[0], r[1]-p[1])
-    return cross(v1, v2) > 0
+    return (q[0]-p[0])*(r[1]-p[1]) > (r[0]-p[0])*(q[1]-p[1])
 
-def intersect(s1, s2): # return the point/segment of intersection
+# Returns the point/segment of intersection
+def intersect(s1, s2):
     (p1, p2), (p3, p4) = s1, s2
     (x1, y1), (x2, y2), (x3, y3), (x4, y4) = p1, p2, p3, p4
     a, b, c = y2-y1, x1-x2, (y2-y1)*x1 - (x2-x1)*y1
@@ -52,6 +49,7 @@ def pip(p, poly):
     s = sum((2*ccw(p, poly[i], poly[i+1])-1) * angle(poly[i], p, poly[i+1]) for i in range(len(poly)-1))
     return abs(abs(s) - 2*pi) < 1e-9
 
+# Use ray intersection
 def pip2(p, poly):
     if not poly: return False
     for i in range(len(poly)-1):
@@ -59,19 +57,24 @@ def pip2(p, poly):
     seg = (p, (p[0] + 1e9, p[1] + 1e9 + 7))
     return bool(sum(bool(intersect(seg, (poly[i], poly[i+1]))) for i in range(len(poly)-1)) % 2)
 
+# Graham scan
 def chull(pts):
-    n, k = len(pts), 0
-    pts = sorted(pts)
-    h = [None]*(2*n)
-    for i in range(n):
-        while k >= 2 and not ccw(h[k-2], h[k-1], pts[i]): k -= 1
-        h[k] = pts[i]; k += 1
-    t = k+1
+    if len(pts) < 3: return pts
+    pts, n = sorted(pts), len(pts)
+    upper, lower = pts[:2], pts[-1:-3:-1]
+    for i in range(2, n):
+        while len(upper) > 1 and not ccw(upper[-2], upper[-1], pts[i]): upper.pop()
+        upper.append(pts[i])
     for i in range(n-2, -1, -1):
-        while k >= t and not ccw(h[k-2], h[k-1], pts[i]): k -= 1
-        h[k] = pts[i]; k += 1
-    while h[-1] == None: h.pop()
-    return h
+        while len(lower) > 1 and not ccw(lower[-2], lower[-1], pts[i]): lower.pop()
+        lower.append(pts[i])
+    return upper[:-1] + lower[:-1]
+
+def area(poly):
+    # assert {*chull(poly)} == {*poly}
+    a, n = 0, len(poly)
+    for i in range(n): a += poly[i][0]*poly[(i+1)%n][1] - poly[i][1]*poly[(i+1)%n][0]
+    return abs(a)/2
 
 if __name__ == '__main__':
     shape = [(1, 1), (3, 3), (9, 1), (12, 4), (9, 7), (1, 7)]
