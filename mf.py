@@ -4,9 +4,7 @@ INF = float('inf')
 
 # from CP4
 def BFS(s, t):
-    d = [-1]*V
     d[s] = 0
-    p = [[-1, -1] for _ in range(V)]
     q = deque([s])
     while q:
         u = q.popleft()
@@ -16,7 +14,7 @@ def BFS(s, t):
             if cap > flow and d[v] == -1:
                 d[v] = d[u]+1
                 q.append(v)
-                p[v] = [u, idx]
+                p[v] = (u, idx)
     return d[t] != -1
 
 # from CP4
@@ -27,9 +25,8 @@ def DFS(u, t, f=INF):
         v, cap, flow = EL[AL[u][i]]
         if d[v] != d[u]+1: continue
         pushed = DFS(v, t, min(f, cap - flow))
-        if pushed != 0:
-            flow += pushed
-            EL[AL[u][i]][2] = flow
+        if pushed:
+            EL[AL[u][i]][2] += pushed
             EL[AL[u][i]^1][2] -= pushed
             return pushed
     return 0
@@ -37,16 +34,17 @@ def DFS(u, t, f=INF):
 V, E = 4, 0
 directed = True
 source, sink = 0, 3
-EL, AL, d, last, p = [], [[] for _ in range(V)], [], [], []
+EL, AL = [], [[] for _ in range(V)]
 for _ in range(E):
     u, v, capacity = map(int, input().split())
     EL.append([v, capacity, 0]), AL[u].append(len(EL)-1), EL.append([u, 0 if directed else capacity, 0]), AL[v].append(len(EL)-1)
 
 # Dinic's algorithm, to be run only once
 mf = 0
+p, d = [(-1, -1) for _ in range(V)], [-1]*V
 while BFS(source, sink):
-    last, = [0]*V
+    last = [0]*V
     f = DFS(source, sink)
-    while f != 0:
-        mf += f; f = DFS(source, sink)
+    while f: mf += f; f = DFS(source, sink)
+    p, d = [(-1, -1) for _ in range(V)], [-1]*V
 print(mf)
