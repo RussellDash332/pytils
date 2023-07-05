@@ -17,9 +17,11 @@ def pf(n):
     res = {}
     idx = 0
     while n != 1 and idx < len(primes):
-        if n % primes[idx] == 0:
-            n //= primes[idx]
-            res[primes[idx]] = res.get(primes[idx], 0) + 1
+        pp = primes[idx]
+        if n % pp == 0:
+            n //= pp
+            if pp not in res: res[pp] = 0
+            res[pp] += 1
         else:
             idx += 1
     if n != 1:

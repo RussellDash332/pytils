@@ -1,7 +1,6 @@
 # GCD of a and b
 def gcd(a, b):
-    while b:
-        a, b = b, a % b
+    while b: a, b = b, a % b
     return a
 
 # LCM of a and b
@@ -21,19 +20,14 @@ def bezout(a, b):
 
 # Used for inv_mod
 def egcd(a, b):
-    if a == 0:
-        return (b, 0, 1)
-    else:
-        g, y, x = egcd(b % a, a)
-        return (g, x - (b // a) * y, y)
+    if a == 0: return (b, 0, 1)
+    else: g, y, x = egcd(b % a, a); return (g, x - (b // a) * y, y)
 
 # Inverse modulo, i.e. x such that a^x = 1 mod m
 def inv_mod(a, m):
-    g, x, y = egcd(a, m)
-    if g != 1:
-        raise Exception
-    else:
-        return x % m
+    g, x, _ = egcd(a, m)
+    if g != 1: raise Exception
+    else: return x % m
 
 # CRT, x mod lcm(m, n) where x = a mod m and x = b mod n
 def crt(a, m, b, n):
