@@ -48,3 +48,18 @@ def powmod(a, b, m):
     elif b % 2:
         return a * powmod(a * a % m, b // 2, m) % m
     return powmod(a * a % m, b // 2, m)
+
+from random import randint
+def miller_rabin(p):
+    if p == 2: return 0
+    if p == 3: return 1
+    d, s = p-1, 0
+    while d % 2 == 0: d //= 2; s += 1
+    for _ in range(3):
+        x = powmod(randint(2, p-2), d, p)
+        for _ in range(s):
+            y = x**2 % p
+            if y == 1 and x != 1 and x != p-1: return 0
+            x = y
+        if y != 1: return 0
+    return 1
