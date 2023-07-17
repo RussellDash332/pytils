@@ -1,4 +1,4 @@
-# Populate graph and its transposee
+# Populate graph and its transpose
 v, e = map(int, input().split())
 g, gt = [[] for _ in range(v)], [[] for _ in range(v)]
 for _ in range(e):

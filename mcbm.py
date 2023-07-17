@@ -21,7 +21,7 @@ for l in list(free):
         match[choice(candidates)] = l
 
 for f in free:
-    vis = [0] * nfree
+    vis = [0]*nfree
     mcbm += aug(f)
 
 print(mcbm)
