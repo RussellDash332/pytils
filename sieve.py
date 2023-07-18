@@ -14,23 +14,21 @@ while p <= LIMIT:
 
 # Prime factorization
 def pf(n):
-    res = {}
-    idx = 0
+    res = []; idx = k = 0
     while n != 1 and idx < len(primes):
         pp = primes[idx]
+        if pp*pp > n: break
         if n % pp == 0:
-            n //= pp
-            if pp not in res: res[pp] = 0
-            res[pp] += 1
-        else:
-            idx += 1
-    if n != 1:
-        is_prime = True
-        for p in range(primes[idx - 1], int(n**0.5) + 2):
-            if n % p == 0:
-                is_prime = False
-                res[p] = 1
-        if is_prime: res[n] = 1
+            while n % pp == 0: n //= pp; k += 1
+            if k: res.append((pp, k))
+        idx += 1; k = 0
+    if n != 1: res.append((n, 1))
+    return res
+
+# Euler's totient function
+def tot(n):
+    res = n
+    for p, _ in pf(n): res //= p; res *= p-1
     return res
 
 # Meissel-Lehmer Algorithm
