@@ -1,14 +1,13 @@
-import sys
-sys.setrecursionlimit(10**5)
-
 g = {}
 
 vis = set()
 res = []
 def DFS(s):
-    vis.add(s)
-    res.append(s)
-    if s in g:
-        for v in g[s]:
-            if v not in vis:
-                DFS(v)
+    stack = [s]
+    while stack:
+        u = stack.pop()
+        vis.add(u)
+        res.append(u)
+        if u in g:
+            for v in g[u]:
+                if v not in vis: stack.append(v)
