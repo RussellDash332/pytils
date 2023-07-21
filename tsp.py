@@ -8,13 +8,10 @@ def tsp(G):
             k = 1
             for i in S: k += 1<<i
             for i in S:
-                if i == 0: continue
                 C[k][i] = min(C[k][i], C[k^(1<<i)][0]+G[0][i])
                 for j in S:
                     if j != i: C[k][i] = min(C[k][i], C[k^(1<<i)][j]+G[j][i])
-    tour = [0]; k = (1<<n)-1
-    while k: _, nxt = min((C[k][i]+G[0][i], i) for i in range(n)); tour.append(nxt); k ^= (1<<nxt)
-    return tour, C[-1][tour[1]]+G[0][tour[1]]
+    k = (1<<n)-1; return min((C[k][i]+G[i][0], i) for i in range(n))
 
 G = [
     [0, 20, 42, 35],
