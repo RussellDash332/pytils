@@ -49,17 +49,30 @@ def powmod(a, b, m):
         return a * powmod(a * a % m, b // 2, m) % m
     return powmod(a * a % m, b // 2, m)
 
+# exclude 2 from the check since it's obvious
+# use pow instead of powmod to remove dependency
 from random import randint
 def miller_rabin(p):
-    if p == 2: return 0
+    if p % 2 == 0: return 0
     if p == 3: return 1
     d, s = p-1, 0
     while d % 2 == 0: d //= 2; s += 1
     for _ in range(3):
-        x = powmod(randint(2, p-2), d, p)
+        x = pow(randint(2, p-2), d, p)
         for _ in range(s):
             y = x**2 % p
             if y == 1 and x != 1 and x != p-1: return 0
             x = y
         if y != 1: return 0
     return 1
+
+def pollard_rho(n):
+    c = 1
+    while True:
+        x, y, d = 2, 2, 1
+        while d == 1: 
+            x = (x*x+c)%n
+            y = (y*y+c)%n; y = (y*y+c)%n
+            d = gcd(abs(x-y), n)
+        if d != n: return d
+        else: c += 1
