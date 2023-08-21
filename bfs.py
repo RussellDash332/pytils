@@ -1,17 +1,14 @@
 from collections import deque
 
-g = {}
+n = 1 # number of vertices
+s = 0 # source vertex
+g = [[] for _ in range(n)]
 
-def bfs(s):
-    q = deque([s])
-    vis = set()
-    res = []
-    while q:
-        u = q.popleft()
-        if u in vis: continue
-        vis.add(u)
-        res.append(u)
-        if u in g:
-            for v in g[u]:
-                q.append(v)
-    return res
+q = deque([s]); vis = [0]*n; res = []
+while q:
+    u = q.popleft()
+    if vis[u]: continue
+    vis[u] = 1; res.append(u)
+    for v in g[u]: q.append(v)
+
+print(res) # traversal result

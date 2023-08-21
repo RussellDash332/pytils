@@ -19,13 +19,11 @@ def mcmf1():
                     return pushed
         vis[u] = 0
         return 0
-
     V, E, s, t = map(int, input().split())
     EL, AL, vis, tc = [], [[] for _ in range(V)], [0]*V, [0]
     for l in sys.stdin:
         u, v, w, c = map(int, l.split())
         if u != v: EL.append([v, w, 0, c]), AL[u].append(len(EL)-1), EL.append([u, 0, 0, -c]), AL[v].append(len(EL)-1)
-
     mf = 0
     d = defaultdict(lambda: INF)
     while True:
@@ -54,7 +52,6 @@ def mcmf2():
         u, v, c, w = map(int, l.split())
         e1, e2 = [u, v, c, w, 0, len(al[v])], [v, u, 0, -w, 0, len(al[u])]
         al[u].append(len(el)), el.append(e1), al[v].append(len(el)), el.append(e2)
-
     flow = cost = 0
     while flow < k:
         id, d, q, p, pe = [0]*n, [INF]*n, [0]*n, [0]*n, [0]*n

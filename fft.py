@@ -29,6 +29,20 @@ def fft(v, inv=False):
         wj *= w
     return y
 
+# Iterative version
+def fft(v, inv=False):
+    stack = [(2*len(v), v)]; tmp = []
+    while stack:
+        nb, v = stack.pop(); n, b = nb//2, nb%2
+        if b == 0:
+            if n == 1: tmp.append(v)
+            else: stack.append((2*n+1, v)), stack.append((n, v[1::2])), stack.append((n, v[::2]))
+        else:
+            yo, ye = tmp.pop(), tmp.pop(); y, wj = [0]*n, 1; w = exp(-1j*(2-4*inv)*pi/n)
+            for i in range(n//2): y[i] = ye[i] + wj * yo[i]; y[i + n//2] = ye[i] - wj * yo[i]; wj *= w
+            tmp.append(y)
+    return tmp[0]
+
 # Multiply two polynomials
 # x^2 + 3x + 7 -> [7, 3, 1]
 def mult(p1, p2):

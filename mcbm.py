@@ -14,14 +14,7 @@ free = set()
 nfree = len(free)
 
 for l in list(free):
-    candidates = [r for r in g[l] if match[r] == -1]
-    if candidates:
-        mcbm += 1
-        free.discard(l)
-        match[choice(candidates)] = l
-
-for f in free:
-    vis = [0]*nfree
-    mcbm += aug(f)
+    if (candidates:=[r for r in g[l] if match[r] == -1]): mcbm += 1; free.discard(l); match[choice(candidates)] = l
+for f in free: vis = [0]*nfree; mcbm += aug(f)
 
 print(mcbm)

@@ -1,9 +1,13 @@
 m = [] # 2D array
+R, C = len(m), len(m[0])
 
-for r in range(len(m)):
-    for c in range(len(m[0])):
+# Iterate through elements
+for r in range(R):
+    for c in range(C):
         pass
 
-for dr, dc in [(-1, 0), (0, -1), (1, 0), (0, 1)]:
-    if 0 <= r+dr < len(m) and 0 <= c+dc < len(m[0]):
+# Check neighbours
+delta = ((-1, 0), (0, -1), (1, 0), (0, 1))
+for dr, dc in delta:
+    if 0<=r+dr<R and 0<=c+dc<C:
         pass

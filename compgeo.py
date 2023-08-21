@@ -1,5 +1,9 @@
 from math import *
 
+def make_line(x1, y1, x2, y2):
+    # ax+by+c=0 passes (x1,y1) and (x2,y2)
+    return y2-y1, x1-x2, (x2-x1)*y1-(y2-y1)*x1
+
 def dist(a, b):
     return hypot(a[0]-b[0], a[1]-b[1])
 

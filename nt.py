@@ -1,4 +1,4 @@
-# GCD of a and b
+# GCD of a and b, or use math.gcd
 def gcd(a, b):
     while b: a, b = b, a % b
     return a
@@ -23,7 +23,7 @@ def egcd(a, b):
     if a == 0: return (b, 0, 1)
     else: g, y, x = egcd(b % a, a); return (g, x - (b // a) * y, y)
 
-# Inverse modulo, i.e. x such that a^x = 1 mod m
+# Inverse modulo, i.e. x such that a^x = 1 mod m, or just use the builtin pow(a, -1, m)
 def inv_mod(a, m):
     g, x, _ = egcd(a, m)
     if g != 1: raise Exception
@@ -39,7 +39,7 @@ def crt(a, m, b, n):
         u, _ = bezout(m, n)
         return (a - m * u * (a - b) // d) % k
 
-# a^b % m
+# a^b % m, or just use the builtin pow function
 def powmod(a, b, m):
     if b == 0:
         return 1
@@ -49,6 +49,19 @@ def powmod(a, b, m):
         return a * powmod(a * a % m, b // 2, m) % m
     return powmod(a * a % m, b // 2, m)
 
+def binmod(n, r, m):
+    if r > n: return 0
+    if r == 0 or r == n: return 1
+    if n < m:
+        # compute nCr as usual
+        s = 1
+        for i in range(m): s *= (n-i)*pow(i+1, -1, m); s %= m
+    else:
+        s = 1
+        while n: s = s*binmod(n%m, r%m, m)%m; n //= m; r //= m
+    return s
+
+# Checks if p is probably prime
 # exclude 2 from the check since it's obvious
 # use pow instead of powmod to remove dependency
 from random import randint
@@ -66,6 +79,7 @@ def miller_rabin(p):
         if y != 1: return 0
     return 1
 
+# Output a trivial factor of n, can factorize integers faster
 def pollard_rho(n):
     c = 1
     while True:
