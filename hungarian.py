@@ -1,7 +1,8 @@
 # Also known as Kuhn-Munkres
 from array import *
 def hungarian(mat):
-    INF = 10**9; n = len(mat)+1; m = len(mat[0])+1; ans = 0; ii = [0]*m
+    if len(mat) > len(mat[0]): mat = [*map(list, zip(*mat))]
+    INF = 10**9; n = len(mat)+1; m = len(mat[0])+1; ans = 0; ii = [0]*max(m, n)
     mtc = array('i', ii); u = array('i', ii); v = array('i', ii); w = array('i', ii); c = 0
     mat = [array('i', ii), *(array('i', [0]+r) for r in mat)]
     for i in range(1, n):
@@ -28,4 +29,18 @@ print(hungarian([
     [108, 125, 150],
     [150, 135, 175],
     [122, 148, 250]
+]))
+
+# col > row?
+print(hungarian([
+    [1, 2, 3],
+    [2, 300, 4]
+]))
+
+# row > col? need to transpose!
+print(hungarian([
+    [1, 2, 13],
+    [2, 3, 34],
+    [43, 4, 54],
+    [4, 5, 6]
 ]))
