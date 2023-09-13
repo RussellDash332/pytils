@@ -1,22 +1,18 @@
 from collections import deque
-g = {}
+n = 1
+g = [[] for _ in range(n)]
 
 # Kahn's algorithm
-indeg, q, top = {}, deque(), []
-for v in g:
-    for w in g[v]:
-        if w not in indeg: indeg[w] = 0
-        indeg[w] += 1
-for v in g:
-    if v not in indeg:
-        q.append(v)
+indeg, top = [0]*n, []
+for v in range(n):
+    for w in g[v]: indeg[w] += 1
+q = deque([i for i in range(n) if indeg[i] == 0])
 while q:
     u = q.popleft()
     top.append(u)
-    if u in g:
-        for v in g[u]:
-            indeg[v] -= 1
-            if indeg[v] == 0: q.append(v)
+    for v in g[u]:
+        indeg[v] -= 1
+        if indeg[v] == 0: q.append(v)
 print(top)
 
 # DFS toposort
@@ -32,7 +28,7 @@ def DFS(s):
             stack.append(2*u+1)
             for v in g[u]:
                 if v not in vis: stack.append(2*v)
-for i in g:
+for i in range(n):
     if i not in vis: DFS(i)
 top.reverse()
 print(top)
