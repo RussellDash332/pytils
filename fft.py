@@ -1,5 +1,3 @@
-from math import *
-
 # String representation of polynomial
 def rep(p):
     n = len(p)
@@ -17,6 +15,7 @@ def rep(p):
 
 # FFT, handles both FFT and IFFT
 # n should be a power of 2
+from math import *
 def fft(v, inv=False):
     n = len(v)
     if n == 1: return v
@@ -30,6 +29,7 @@ def fft(v, inv=False):
     return y
 
 # Iterative version
+from cmath import *
 def fft(v, inv=False):
     stack = [(2*len(v), v)]; tmp = []
     while stack:
