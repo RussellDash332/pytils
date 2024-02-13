@@ -1,3 +1,17 @@
+# the classic PURQ version
+class FenwickTree:
+    def __init__(self, arr):
+        self.ft = [0]*(len(arr)+1); self.n = len(arr)
+        for i, e in enumerate(arr): self.update(i, e)
+    def update(self, idx, e):
+        idx += 1
+        while idx <= self.n: self.ft[idx] += e; idx += idx & (-idx)
+    def get(self, idx):
+        s, idx = 0, min(idx, self.n)
+        while idx > 0: s, idx = s+self.ft[idx], idx-(idx&(-idx))
+        return s
+
+# RURQ version
 class FenwickTree:
     def __init__(self, arr):
         self.ft1 = [0]*(len(arr)+1)
