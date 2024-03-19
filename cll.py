@@ -14,7 +14,9 @@ class LL:
                 self.tail.next.prev = node
                 node.next = self.tail.next
             self.tail.next = node
-        node.prev = self.tail
+            node.prev = self.tail
+        else:
+            node.prev = node.next = node
         self.tail = node
         self.size += 1
     def insert_at(self, node, at):
