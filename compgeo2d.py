@@ -1,21 +1,15 @@
 from math import *
 
+# ax+by+c=0 passes (x1,y1) and (x2,y2)
 def make_line(x1, y1, x2, y2):
-    # ax+by+c=0 passes (x1,y1) and (x2,y2)
     return y2-y1, x1-x2, (x2-x1)*y1-(y2-y1)*x1
 
 def dist(a, b):
     return hypot(a[0]-b[0], a[1]-b[1])
 
-def dot(a, b):
-    return a[0]*b[0] + a[1]*b[1]
-
-def norm(a):
-    return hypot(*a)
-
 def angle(a, o, b):
     v1, v2 = (a[0]-o[0], a[1]-o[1]), (b[0]-o[0], b[1]-o[1])
-    return acos(dot(v1, v2)/(norm(v1)*norm(v2)))
+    return acos((v1[0]*v2[0]+v1[1]*v2[1])/(hypot(*v1)*hypot(*v2)))
 
 def ccw(p, q, r):
     return (q[0]-p[0])*(r[1]-p[1]) > (r[0]-p[0])*(q[1]-p[1])
@@ -74,8 +68,8 @@ def chull(pts):
         lower.append(pts[i])
     return upper[:-1] + lower[:-1]
 
+# Assumes {*chull(poly)} == {*poly}
 def area(poly):
-    # assert {*chull(poly)} == {*poly}
     a, n = 0, len(poly)
     for i in range(n): a += poly[i][0]*poly[(i+1)%n][1] - poly[i][1]*poly[(i+1)%n][0]
     return abs(a)/2
