@@ -1,4 +1,5 @@
 from math import *
+from random import *
 
 def dot(a, b):
     return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]
@@ -76,6 +77,30 @@ def lpx(l, p):
     y = dot(l[1], u)-dot(p[0], u)
     return ((l[0][0]*y-l[1][0]*x)/(y-x), (l[0][1]*y-l[1][1]*x)/(y-x), (l[0][2]*y-l[1][2]*x)/(y-x))
 
+def circumcenter(a, b, c):
+    x = (c[0]-a[0], c[1]-a[1], c[2]-a[2])
+    y = (b[0]-a[0], b[1]-a[1], b[2]-a[2])
+    s1 = hypot(*x); s2 = hypot(*y)
+    c = cross_util(x, y); d = (-c[0], -c[1], -c[2]); e = 2*(c[0]**2+c[1]**2+c[2]**2)
+    p = cross_util(d, y); q = cross_util(c, x)
+    return (a[0]+s1*s1/e*p[0]+s2*s2/e*q[0] , a[1]+s1*s1/e*p[1]+s2*s2/e*q[1], a[2]+s1*s1/e*p[2]+s2*s2/e*q[2])
+
+# minimum enclosing points
+def mec(p):
+    shuffle(p); o = p[0]; r = 0; eps = 1+1e-9
+    for i in range(len(p)):
+        if hypot(o[0]-p[i][0], o[1]-p[i][1], o[2]-p[i][2]) <= r*eps: continue
+        o = p[i]; r = 0
+        for j in range(i):
+            if hypot(o[0]-p[j][0], o[1]-p[j][1], o[2]-p[j][2]) <= r*eps: continue
+            o = ((p[i][0]+p[j][0])/2, (p[i][1]+p[j][1])/2, (p[i][2]+p[j][2])/2)
+            r = hypot(o[0]-p[i][0], o[1]-p[i][1], o[2]-p[i][2])
+            for k in range(j):
+                if hypot(o[0]-p[k][0], o[1]-p[k][1], o[2]-p[k][2]) <= r*eps: continue
+                o = circumcenter(p[i], p[j], p[k])
+                r = hypot(o[0]-p[i][0], o[1]-p[i][1], o[2]-p[i][2])
+    return o, r
+
 if __name__ == '__main__':
     P = [(1, 0, 0), (1, 1, 0), (0, 0, 0), (0, 0, 1)]
     print(chull(P))
@@ -94,3 +119,7 @@ if __name__ == '__main__':
 
     print((x, y, z))
     print(lpx(((1, 1, 1), (-2, -5, -8)), ((0, 0, 0), (-1, 2, -1), (5, 2, -3))))
+
+    print(circumcenter((3, 2, -5), (-3, 8, -5), (-3, 2, 1)))
+
+    print(mec([(3, 2, -5), (-3, 8, -5), (-3, 2, 1)]))
