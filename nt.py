@@ -55,7 +55,7 @@ def binmod(n, r, m):
     if n < m:
         # compute nCr as usual
         s = 1
-        for i in range(m): s *= (n-i)*pow(i+1, -1, m); s %= m
+        for i in range(r): s *= (n-i)*pow(i+1, -1, m); s %= m
     else:
         s = 1
         while n: s = s*binmod(n%m, r%m, m)%m; n //= m; r //= m
