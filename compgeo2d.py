@@ -68,10 +68,10 @@ def chull(pts):
         lower.append(pts[i])
     return upper[:-1] + lower[:-1]
 
-# Assumes {*chull(poly)} == {*poly}
-def area(poly):
-    a, n = 0, len(poly)
-    for i in range(n): a += poly[i][0]*poly[(i+1)%n][1] - poly[i][1]*poly[(i+1)%n][0]
+# Assumes {*chull(p)} == {*p}
+def area(p):
+    a, n = 0, len(p)
+    for i in range(n): a += p[i][0]*p[(i+1)%n][1] - p[i][1]*p[(i+1)%n][0]
     return abs(a)/2
 
 # Assumption: px and py are list of complex numbers, px sorted by x, py sorted by y
@@ -95,6 +95,11 @@ def closest_pair(px, py):
             if (d2:=abs(q[i] - q[j])) < d: d, p1, p2 = d2, q[i], q[j]
             else: break
     return d, p1, p2
+
+def centroid(p):
+    a = cx = cy = 0; n = len(p)
+    for i in range(n): d = p[i][0]*p[(i+1)%n][1]-p[(i+1)%n][0]*p[i][1]; a += d; cx += (p[i][0]+p[(i+1)%n][0])*d; cy += (p[i][1]+p[(i+1)%n][1])*d
+    return (cx/a/3, cy/a/3)
 
 if __name__ == '__main__':
     shape = [(1, 1), (3, 3), (9, 1), (12, 4), (9, 7), (1, 7)]
