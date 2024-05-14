@@ -48,7 +48,7 @@ class AVL:
         if t.left != None and t.right != None: t.height = max(t.left.height, t.right.height) + 1
         elif t.left != None: t.height = t.left.height + 1
         elif t.right != None: t.height = t.right.height + 1
-        else: t.height = 0
+        else: t.height = 1
     def update_size(self, t):
         if t.left != None and t.right != None: t.size = t.left.size + t.right.size + t.count
         elif t.left != None: t.size = t.left.size + t.count
