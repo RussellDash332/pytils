@@ -1,4 +1,4 @@
-from random import choice
+from random import *
 
 def aug(l):
     if vis[l]: return 0

@@ -1,4 +1,4 @@
-from random import choice
+from random import *
 
 V = 0
 g = [[] for _ in range(V)]

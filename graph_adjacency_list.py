@@ -19,7 +19,7 @@ g = [{} for _ in range(n)]
 for _ in range(m):
     u, v, w = map(int, input().split())
     for _ in range(2):
-        if v not in g[u]:   g[u][v] = w
+        if v not in g[u]: g[u][v] = w
         g[u][v] = min(g[u][v], w)
         u, v = v, u
 s, t = map(int, input().split())

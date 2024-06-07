@@ -92,4 +92,4 @@ def mcmf2():
 
 if __name__ == '__main__':
     #mcmf1()
-    mcmf2()
+    mcmf2() # preferred since non-recursive
