@@ -6,7 +6,7 @@ g = [{} for _ in range(v)]
 D = [[g[i][j] if j in g[i] else INF for j in range(v)] for i in range(v)]
 for k in range(v):
     for i in range(v):
-        for j in range(v): D[i][j] = min(D[i][j], D[i][k] + D[k][j])
+        for j in range(v): D[i][j] = min(D[i][j], D[i][k]+D[k][j])
 
 # Transitive closure - reachability
 g = [set() for _ in range(v)]
@@ -34,7 +34,7 @@ g = [{} for _ in range(v)]
 D = [[g[i][j] if j in g[i] else INF for j in range(v)] for i in range(v)]
 for k in range(v):
     for i in range(v):
-        for j in range(v): D[i][j] = min(D[i][j], D[i][k] + D[k][j])
+        for j in range(v): D[i][j] = min(D[i][j], D[i][k]+D[k][j])
 for i in range(v):
     for j in range(v):
         for k in range(v):
@@ -47,7 +47,7 @@ D = [[g[i][j] if j in g[i] else INF for j in range(v)] for i in range(v)]
 for i in range(v): D[i][i] = INF
 for k in range(v):
     for i in range(v):
-        for j in range(v): D[i][j] = min(D[i][j], D[i][k] + D[k][j])
+        for j in range(v): D[i][j] = min(D[i][j], D[i][k]+D[k][j])
 cyc = [i for i in range(v) if D[i][i]<0]
 
 # Positive cycle detection
@@ -56,7 +56,7 @@ D = [[g[i][j] if j in g[i] else INF for j in range(v)] for i in range(v)]
 for i in range(v): D[i][i] = INF
 for k in range(v):
     for i in range(v):
-        for j in range(v): D[i][j] = min(D[i][j], D[i][k] + D[k][j])
+        for j in range(v): D[i][j] = min(D[i][j], D[i][k]+D[k][j])
 cyc = [i for i in range(v) if 0<=D[i][i]<INF]
 
 # Print path
