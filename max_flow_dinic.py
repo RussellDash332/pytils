@@ -1,6 +1,6 @@
 # from CP4
-from collections import deque
-INF = float('inf')
+# Dinic's algorithm, to be run only once
+from collections import deque; INF = float('inf')
 
 def BFS(s, t):
     d[s] = 0; q = deque([s])
@@ -17,21 +17,14 @@ def DFS(u, t, f=INF):
     for i in range(last[u], len(AL[u])):
         last[u] = i; v, cap, flow = EL[AL[u][i]]
         if d[v] != d[u]+1: continue
-        pushed = DFS(v, t, min(f, cap - flow))
+        pushed = DFS(v, t, min(f, cap-flow))
         if pushed: EL[AL[u][i]][2] += pushed; EL[AL[u][i]^1][2] -= pushed; return pushed
     return 0
 
 def add(u, v, c):
-    EL.append([v, c, 0]), AL[u].append(len(EL)-1), EL.append([u, 0 if directed else c, 0]), AL[v].append(len(EL)-1)
+    EL.append([v, c, 0]), AL[u].append(len(EL)-1), EL.append([u, 0, 0]), AL[v].append(len(EL)-1)
 
-V, E = 4, 0
-directed = True
-source, sink = 0, 3
-EL, AL = [], [[] for _ in range(V)]
-for _ in range(E): u, v, c = map(int, input().split()); add(u, v, c)
-
-# Dinic's algorithm, to be run only once
-mf = 0; d = [-1]*V
+V = 4; source, sink = V-2, V-1; EL, AL = [], [[] for _ in range(V)]; mf = 0; d = [-1]*V
 while BFS(source, sink):
     last = [0]*V; f = DFS(source, sink)
     while f: mf += f; f = DFS(source, sink)
