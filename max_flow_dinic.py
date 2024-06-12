@@ -22,7 +22,7 @@ def DFS(u, t, f=INF):
     return 0
 
 def add(u, v, c):
-    EL.append([v, c, 0]), AL[u].append(len(EL)-1), EL.append([u, 0, 0]), AL[v].append(len(EL)-1)
+    AL[u].append(len(EL)); EL.append([v, c, 0]); AL[v].append(len(EL)); EL.append([u, 0, 0])
 
 V = 4; source, sink = V-2, V-1; EL, AL = [], [[] for _ in range(V)]; mf = 0; d = [-1]*V
 while BFS(source, sink):

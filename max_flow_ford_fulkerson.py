@@ -1,7 +1,7 @@
 from collections import deque; INF = float('inf')
 
 def add(u, v, c):
-    EL.append([v, c]), AL[u].append(len(EL)-1), EL.append([u, 0]), AL[v].append(len(EL)-1)
+    AL[u].append(len(EL)); EL.append([v, c]); AL[v].append(len(EL)); EL.append([u, 0])
 
 V = 2; source, sink = V-2, V-1; EL, AL = [], [[] for _ in range(V)]; mf = 0; p = [-1]*V
 while True:
