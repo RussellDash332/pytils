@@ -10,11 +10,12 @@ def aug(l):
 V = 5
 g = [[] for _ in range(V)]
 match, mcbm = [-1]*V, 0
-free = set()
-nfree = len(free)
-
-for l in list(free):
+free = set(); nfree = len(free)
+for l in [*free]:
     if (candidates:=[r for r in g[l] if match[r] == -1]): mcbm += 1; free.discard(l); match[choice(candidates)] = l
 for f in free: vis = [0]*nfree; mcbm += aug(f)
-
 print(mcbm)
+
+# Display the matching
+for i in range(V):
+    if match[i] != -1: print(i, match[i])
