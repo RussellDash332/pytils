@@ -1,7 +1,6 @@
 # m = number of variables, n = number of constraints
 def simplex(A, C):
-    n, m = len(A), len(A[0])-1
-    c = [[0]*(m+n+1) for _ in range(n+1)]
+    n, m = len(A), len(A[0])-1; c = [[0]*(m+n+1) for _ in range(n+1)]
     for i in range(n):
         for j in range(m): c[i][j] = A[i][j]
         c[i][-1] = A[i][-1]
