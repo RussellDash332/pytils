@@ -5,7 +5,6 @@
 # Should work on general cases, especially when it includes a lower bound
 INF = float('inf'); EPS = 1e-5
 def simplex(A, C):
-    m = len(A); n = len(A[0])-1; D = [[0]*(n+2) for _ in range(m+2)]; N = [0]*(n+1); B = [0]*m
     def pivot(r, s):
         k = 1/D[r][s]
         for i in range(m+2):
@@ -17,32 +16,18 @@ def simplex(A, C):
         D[r][s] = k; B[r], N[s] = N[s], B[r]
     def find(p):
         while True:
-            s = r = -1
-            for i in range(n+1):
-                if (p or N[i] != -1) and (s == -1 or (D[m+p][i], N[i]) < (D[m+p][s], N[s])): s = i
-            if D[m+p][s] > -EPS: return 1
-            for i in range(m):
-                if D[i][s] > EPS and (r == -1 or (D[i][-1]/D[i][s], B[i]) < (D[r][-1]/D[r][s], B[r])): r = i
-            if r == -1: return 0
+            if D[m+p][s:=min((i for i in range(n+1) if p or N[i] != -1), key=lambda x: (D[m+p][x], N[x]))] > -EPS: return 1
+            if (r:=min((i for i in range(m) if D[i][s] > EPS), key=lambda x: (D[x][-1]/D[x][s], B[x]), default=-1)) == -1: return 0
             pivot(r, s)
-    for i in range(m):
-        for j in range(n): D[i][j] = A[i][j]
-        B[i] = n+i; D[i][n] = -1; D[i][-1] = A[i][-1]
-    for i in range(n): N[i] = i; D[m][i] = C[i]
-    N[n] = -1; D[-1][n] = 1; r = min(range(m), key=lambda x: D[x][-1])
-    if D[r][-1] < -EPS:
-        pivot(r, n)
-        if not find(1) or D[-1][-1] < -EPS: return -INF
-    for i in range(m):
-        if B[i] != -1: continue
-        s = -1
-        for j in range(n):
-            if s == -1 or D[i][j] < D[i][s] or (D[i][j] == D[i][s] and N[j] < N[s]): s = j
-        pivot(i, s)
-    return -D[m][-1] if find(0) else INF
+    m = len(A); n = len(A[0])-1; N = [*range(n), -1]; B = [*range(n, n+m)]; D = [*([*A[i], -1] for i in range(m)), C+[0]*2, [0]*(n+2)]
+    for i in range(m): D[i][-2], D[i][-1] = D[i][-1], D[i][-2]
+    D[-1][n] = 1; r = min(range(m), key=lambda x: D[x][-1])
+    if D[r][-1] < -EPS and (pivot(r, n) or not find(1) or D[-1][-1] < -EPS): return -INF
+    for i in range(m): B[i] == -1 and pivot(i, min(range(n), key=lambda x: (D[i][x], N[x])))
+    return -D[m][-1] if find(0) else -INF
 
-# Definitely shorter (might be faster), but only works on positive A-entries
-def simplex_positive(A, C):
+# Old version (might be faster), but only works on positive A-entries
+def simplex_old(A, C):
     m, n = len(A), len(A[0])-1; c = [[0]*(m+n+1) for _ in range(m+1)]
     for i in range(m):
         for j in range(n): c[i][j] = A[i][j]
@@ -65,11 +50,11 @@ A = [
     [0.5, 0.5, 150],    # 0.5x + 0.5y <= 150
     [0, 0.5, 100]       # 0.5y <= 100
 ]
-C = [-3.2, -2.8]        # minimize -3.2x-2.8y <-> maximize 3.2x+2.8y
+C = [-3.2, -2.8]        # minimize -3.2x - 2.8y <-> maximize 3.2x + 2.8y
 print(simplex(A, C))    # optimal when x = 200, y = 100
-print(simplex_positive(A, C))
+print(simplex_old(A, C))
 
-# Another one that you can try
+# Another example
 A = [
     [1, 2, 2, 1, 1, 0, 12],     # x1 + 2x2 + 2x3 + x4 + x5 <= 12
     [1, 2, 1, 1, 2, 1, 18],     # x1 + 2x2 + x3 + x4 + 2x5 + x6 <= 18
@@ -77,7 +62,7 @@ A = [
 ]
 C = [-1, 2, 3, 1, 1, -2]        # minimize -x1 + 2x2 + 3x3 + x4 + x5 - 2x6
 print(simplex(A, C))
-print(simplex_positive(A, C))
+print(simplex_old(A, C))
 
 # How about bounded on both sides?
 A = [
@@ -88,7 +73,6 @@ A = [
 ]
 C = [50, 40]        # can tell that 50x + 40y >= 130
 print(simplex(A, C))
-#print(simplex_positive(A, C))
 
 # Equality?
 A = [
@@ -97,6 +81,13 @@ A = [
     [0, -1, -4],    # y = 4
     [0, 1, 4]
 ]
-C = [500, -40]
+C = [500, -40]      # 500x - 40y = 340
 print(simplex(A, C))
-#print(simplex_positive(A, C))
+
+# Infinity?
+A = [
+    [-1, -4, -3],   # x + 4y >= 3
+    [-2, -1, -5]    # 2x + y >= 5
+]
+C = [-1, 2]         # minimize -x + 2y <-> maximize x - 2y
+print(simplex(A, C))
