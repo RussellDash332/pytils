@@ -7,8 +7,7 @@ def f(n):
 # 00000.....00111...11
 lo, hi = 0, 10**9
 while lo < hi:
-    mi = (lo+hi)//2
-    if f(mi): hi = mi
+    if f(mi:=(lo+hi)//2): hi = mi
     else: lo = mi+1
 ans = lo
 
@@ -16,8 +15,7 @@ ans = lo
 # 11111.....11000...00
 lo, hi = 0, 10**9
 while hi-lo>1:
-    mi = (lo+hi)//2
-    if f(mi): lo = mi
+    if f(mi:=(lo+hi)//2): lo = mi
     else: hi = mi-1
 ans = hi if f(hi) else hi-1
 
