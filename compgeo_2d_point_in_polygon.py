@@ -20,13 +20,13 @@ def pip(p, poly):
     s = sum((2*ccw(p, poly[i], poly[i+1])-1) * angle(poly[i], p, poly[i+1]) for i in range(len(poly)-1))
     return abs(abs(s) - 2*pi) < 1e-9
 
-# Use ray intersection
+# Use ray intersection and intersect_check from the other file
 def pip2(p, poly):
     if not poly: return False
     for i in range(len(poly)-1):
         if abs(dist(poly[i], p) + dist(p, poly[i+1]) - dist(poly[i], poly[i+1])) < 1e-9: return True
-    seg = (p, (p[0] + 1e9, p[1] + 1e9 + 7))
-    return bool(sum(bool(intersect(seg, (poly[i], poly[i+1]))) for i in range(len(poly)-1)) % 2)
+    ray = (p, (p[0]+1e9, p[1]+1e9+7))
+    return bool(sum(intersect_check(ray, (poly[i], poly[i+1])) for i in range(len(poly)-1))%2)
 
 if __name__ == '__main__':
     shape = [(1, 1), (3, 3), (9, 1), (12, 4), (9, 7), (1, 7)]

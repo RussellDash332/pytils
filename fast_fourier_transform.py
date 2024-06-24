@@ -10,6 +10,7 @@ def rep(p):
 
 # FFT, handles both FFT and IFFT
 # n should be a power of 2
+# Note, if prone to floating point error, recompute wj instead of multiplying by w every time
 from math import *
 def fft(v, inv=False):
     n = len(v)
