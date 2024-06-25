@@ -19,17 +19,13 @@ class FenwickTree:
         self.n = len(arr)
         for i in range(self.n): self.add(i, i+1, arr[i])
     def add(self, l, r, v):
-        r = min(r, self.n); p1 = p3 = l+1; p2 = p4 = r+1
-        while p1 <= self.n: self.ft1[p1] += v; p1 += p1&(-p1)
-        while p2 <= self.n: self.ft1[p2] -= v; p2 += p2&(-p2)
-        while p3 <= self.n: self.ft2[p3] += v*l; p3 += p3&(-p3)
-        while p4 <= self.n: self.ft2[p4] -= v*r; p4 += p4&(-p4)
+        r = min(r, self.n); p1 = l+1; p2 = r+1
+        while p1 <= self.n: self.ft1[p1] += v; self.ft2[p1] += v*l; p1 += p1&(-p1)
+        while p2 <= self.n: self.ft1[p2] -= v; self.ft2[p2] -= v*r; p2 += p2&(-p2)
     def get(self, l, r):
-        r = min(r, self.n); s1 = s2 = s3 = s4 = 0; p1 = p2 = r; p3 = p4 = l
-        while p1 > 0: s1 += self.ft1[p1]; p1 -= p1&(-p1)
-        while p2 > 0: s2 += self.ft2[p2]; p2 -= p2&(-p2)
-        while p3 > 0: s3 += self.ft1[p3]; p3 -= p3&(-p3)
-        while p4 > 0: s4 += self.ft2[p4]; p4 -= p4&(-p4)
+        r = min(r, self.n); s1 = s2 = s3 = s4 = 0; p1 = r; p2 = l
+        while p1 > 0: s1 += self.ft1[p1]; s2 += self.ft2[p1]; p1 -= p1&(-p1)
+        while p2 > 0: s3 += self.ft1[p2]; s4 += self.ft2[p2]; p2 -= p2&(-p2)
         return s1*r-s2-s3*l+s4
 
 arr = [1, 4, 2, 8, 3, 5, 3, 1]
