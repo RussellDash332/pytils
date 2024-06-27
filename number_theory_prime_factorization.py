@@ -9,6 +9,7 @@ while p <= LIMIT:
     p += 2
 
 # Prime factorization
+# Alternatively you can also backtrack using Pollard-Rho
 def pf(n):
     res = []; idx = k = 0
     while n != 1 and idx < len(primes):
@@ -16,7 +17,7 @@ def pf(n):
         if pp*pp > n: break
         if n % pp == 0:
             while n % pp == 0: n //= pp; k += 1
-            if k: res.append((pp, k))
+            res.append((pp, k))
         idx += 1; k = 0
     if n != 1: res.append((n, 1))
     return res
@@ -29,7 +30,7 @@ def ndiv(n):
         if pp*pp > n: break
         if n % pp == 0:
             while n % pp == 0: n //= pp; k += 1
-            if k: res *= k+1
+            res *= k+1
         idx += 1; k = 0
     if n != 1: res *= 2
     return res
