@@ -4,7 +4,7 @@
 # Assumes {*chull(p)} == {*p}
 def area(p):
     a, n = 0, len(p)
-    for i in range(n): a += p[i][0]*p[(i+1)%n][1] - p[i][1]*p[(i+1)%n][0]
+    for i in range(n): a += p[i][0]*p[(i+1)%n][1]-p[i][1]*p[(i+1)%n][0]
     return abs(a)/2
 
 def centroid(p):

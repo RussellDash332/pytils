@@ -1,6 +1,7 @@
 # Represent a point as a tuple of (x, y)
 # Represent a polygon as a list of points
 
+from compgeo_2d_intersect import intersect_check
 from math import *
 
 def dist(a, b):
