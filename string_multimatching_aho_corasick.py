@@ -35,7 +35,6 @@ def smm(s, pp):
             for w in a[ss][3]: matches[w].append(i+1-len(pp[w]))
             ss = a[ss][2]
         ss = state
-    n = -1
     return matches
 
 if __name__ == '__main__':
