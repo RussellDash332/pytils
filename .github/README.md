@@ -229,6 +229,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
     Computes the Z-function where `z = [lcp(s, s[i:]) for i in range(len(s))]`.
 
 ### Linear Algebra
+- [`matrix_exponentiation_determinant_kirchoff`](https://github.com/RussellDash332/pytils/blob/main/matrix_exponentiation_determinant_kirchoff.py)
+
+    Basic matrix (fast) exponentiation, determinant computation, and Kirchoff's tree theorem. The last two run in $O(N^3)$ time where $N$ is the size of the (square) matrix.
+
+    > Kattis problem(s) to try on: [statetransfer](https://open.kattis.com/problems/statetransfer), [numbers2](https://open.kattis.com/problems/numbers2), [organising](https://open.kattis.com/problems/organising), [unicycliccount](https://open.kattis.com/problems/unicycliccount)
+
 - [`rref_gaussian_elimination`](https://github.com/RussellDash332/pytils/blob/main/rref_gaussian_elimination.py)
 
     Converts a matrix $A$ into its reduced row-echelon form (RREF). Very useful for Gaussian elimination.
@@ -501,3 +507,9 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
     Computes the number of pairs on an array with switched orders, also interpretable as the number of swaps needed when performing bubble sort on the array of size $n$. Runs in $O(n\log n)$ time.
 
     > Kattis problem(s) to try on: [excursion](https://open.kattis.com/problems/excursion), [ultraquicksort](https://open.kattis.com/problems/ultraquicksort), [froshweek](https://open.kattis.com/problems/froshweek), [bread](https://open.kattis.com/problems/bread), [bilskurar](https://open.kattis.com/problems/bilskurar), [camels](https://open.kattis.com/problems/camels), [vudu](https://open.kattis.com/problems/vudu)
+
+- [`sprague_grundy_mex`](https://github.com/RussellDash332/pytils/blob/main/sprague_grundy_mex.py)
+
+    Sprague-Grundy theorem to find the Grundy value of a game state using minimum excluded value (MEX).
+
+    > Kattis problem(s) to try on: [snim](https://open.kattis.com/problems/snim), [cuboidslicinggame](https://open.kattis.com/problems/cuboidslicinggame), [wheelgame](https://open.kattis.com/problems/wheelgame)
