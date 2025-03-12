@@ -298,6 +298,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [marshlandrescues](https://open.kattis.com/problems/marshlandrescues), [bigbrother](https://open.kattis.com/problems/bigbrother)
 
+- [`compgeo_2d_minkowski_polygon_sum`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_minkowski_polygon_sum.py)
+
+    Compute the Minkowski sum of two convex polygons. In mathematical terms, $\{a+b \forall a \in A, b \in B\}$ for two convex polygons $A$ and $B$. Runs in $O(|A|+|B|)$ time.
+
+    > Kattis problem(s) to try on: [geometryisfun](https://open.kattis.com/problems/geometryisfun), [takeonmeme](https://open.kattis.com/problems/takeonmeme)
+
 #### 3D
 - [`compgeo_3d_projection_intersection`](https://github.com/RussellDash332/pytils/blob/main/compgeo_3d_projection_intersection.py)
 
