@@ -1,6 +1,3 @@
-def cross(a, b):
-    return a[0]*b[1]-a[1]*b[0]
-
 def minkowski(P, Q):
     p = P.index(min(P)); q = Q.index(min(Q)); a = len(P); b = len(Q); R = [(P[p][0]+Q[q][0], P[p][1]+Q[q][1])]; i = p; j = q
     while i < p+a or j < q+b:
