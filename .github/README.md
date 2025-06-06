@@ -60,9 +60,9 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 #### Miscellaneous
 - [`fast_fourier_transform`](https://github.com/RussellDash332/pytils/blob/main/fast_fourier_transform.py)
 
-    Fast Fourier Transform (FFT) used mainly for multiplying two polynomials, runs in $O(n\log n)$ time, where $n$ is the polynomial degree.
+    Fast Fourier Transform (FFT) and number theoretic transform (NTT) used mainly for multiplying two polynomials, runs in $O(n\log n)$ time, where $n$ is the polynomial degree.
 
-    > Kattis problem(s) to try on: [polymul1](https://open.kattis.com/problems/polymul1), [polymul2](https://open.kattis.com/problems/polymul2), [fastfouriertransform](https://open.kattis.com/problems/fastfouriertransform), [allmodulopythagorean](https://open.kattis.com/problems/allmodulopythagorean), [allpairsums](https://open.kattis.com/problems/allpairsums)
+    > Kattis problem(s) to try on: [polymul1](https://open.kattis.com/problems/polymul1), [polymul2](https://open.kattis.com/problems/polymul2), [fastfouriertransform](https://open.kattis.com/problems/fastfouriertransform), [allmodulopythagorean](https://open.kattis.com/problems/allmodulopythagorean), [allpairsums](https://open.kattis.com/problems/allpairsums), [numbertheoretictransform](https://open.kattis.com/problems/numbertheoretictransform), [diceresults](https://open.kattis.com/problems/diceresults)
 
 - [`number_theory_mobius_function`](https://github.com/RussellDash332/pytils/blob/main/number_theory_mobius_function.py)
 
@@ -100,6 +100,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [whostheboss](https://open.kattis.com/problems/whostheboss), [flowingfountain](https://open.kattis.com/problems/flowingfountain)
 
+- [`sorted_list`](https://github.com/RussellDash332/pytils/blob/main/sorted_list.py)
+
+    Heavily-optimized implementation of a Python sorted list, expected to perform as well as what an actual $O(\log n)$-time sorted set/map operation would do.
+
+    > Kattis problem(s) to try on: [investigatingfrogbehaviouronlilypadpatterns](https://open.kattis.com/problems/investigatingfrogbehaviouronlilypadpatterns), [golf](https://open.kattis.com/problems/golf)
+
 #### Trees
 - [`avl_tree`](https://github.com/RussellDash332/pytils/blob/main/avl_tree.py)
 
@@ -132,6 +138,8 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 - [`treap`](https://github.com/RussellDash332/pytils/blob/main/treap.py)
 
     Quick implementation of a treap data structure.
+
+    > Kattis problem(s) to try on: [spilahlustun](https://open.kattis.com/problems/spilahlustun)
 
 - [`wavelet_tree`](https://github.com/RussellDash332/pytils/blob/main/wavelet_tree.py)
 
@@ -172,6 +180,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
     > Kattis problem(s) to try on: [quintessentialbirthdaysurprise](https://open.kattis.com/problems/quintessentialbirthdaysurprise), [yatp](https://open.kattis.com/problems/yatp)
 
 #### Miscellaneous
+- [`knuth_optimization`](https://github.com/RussellDash332/pytils/blob/main/knuth_optimization.py)
+
+    Knuth's optimization. Also known as a 1D1D dynamic programming, which optimizes a $O(n^2)$ DP into a $O(n \log n)$ one.
+
+    > Kattis problem(s) to try on: [coveredwalkway](https://open.kattis.com/problems/coveredwalkway), [marathon2](https://open.kattis.com/problems/marathon2)
+
 - [`longest_increasing_subsequence`](https://github.com/RussellDash332/pytils/blob/main/longest_increasing_subsequence.py)
 
     Finds the LIS length and outputs any of them. Another variant counts the number of distinct LIS in an array of $n$ numbers. Both functions run in $O(n\log n)$ time.
@@ -247,6 +261,18 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [cheeseifyouplease](https://open.kattis.com/problems/cheeseifyouplease), [roadtimes](https://open.kattis.com/problems/roadtimes)
 
+- [`conjugate_gradient`](https://github.com/RussellDash332/pytils/blob/main/conjugate_gradient.py)
+
+    Solves the linear system $Ax=b$ where $A$ is a $n \times n$ real symmetric positive-definite matrix and $b$ is a $n$-dimensional vector in $O(kn^2)$ time, where $k << n$.
+
+    > Kattis problem(s) to try on: [dreams](https://open.kattis.com/problems/dreams)
+
+- [`qr_decomposition`](https://github.com/RussellDash332/pytils/blob/main/qr_decomposition.py)
+
+    Decomposes $A$, a square matrix, into two matrices $Q$ and $R$ of the same size, where $Q$ is orthonormal and $R$ is upper triangular.
+
+    > Kattis problem(s) to try on: [vector](https://open.kattis.com/problems/vector)
+
 ### Numerical Methods
 - [`binary_search`](https://github.com/RussellDash332/pytils/blob/main/binary_search.py)
 
@@ -274,6 +300,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [pointinpolygon](https://open.kattis.com/problems/pointinpolygon)
 
+- [`compgeo_2d_simple_polygon`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_simple_polygon.py)
+
+    Checks if a polygon is simple, i.e. not self-intersecting.
+
+    > Kattis problem(s) to try on: [polygon](https://open.kattis.com/problems/polygon), [girdingaherping](https://open.kattis.com/problems/girdingaherping)
+
 - [`compgeo_2d_intersect`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_intersect.py)
 
     Line segment intersection.
@@ -298,6 +330,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [marshlandrescues](https://open.kattis.com/problems/marshlandrescues), [bigbrother](https://open.kattis.com/problems/bigbrother)
 
+- [`compgeo_2d_delaunay_triangulation_voronoi_diagram`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_delaunay_triangulation_voronoi_diagram.py)
+
+    Computes the Delaunay triangulation (and/or the Voronoi diagram) of a set of $n$ points in 2D. Runs in $O(n \log n)$ time. Useful to compute Euclidean MST efficiently.
+
+    > Kattis problem(s) to try on: [connections](https://open.kattis.com/problems/connections), [pandapreserve](https://open.kattis.com/problems/pandapreserve)
+
 - [`compgeo_2d_minkowski_polygon_sum`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_minkowski_polygon_sum.py)
 
     Compute the Minkowski sum of two convex polygons. In mathematical terms, $\{a+b \forall a \in A, b \in B\}$ for two convex polygons $A$ and $B$. Runs in $O(|A|+|B|)$ time.
@@ -316,7 +354,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
 - [`compgeo_3d_convex_hull`](https://github.com/RussellDash332/pytils/blob/main/compgeo_3d_convex_hull.py)
 
-    Given $n$ 3D-coordinates where no four points lie on the same plane, compute its convex hull (smallest polyhedron that contains all points). Runs in $O(n^2)$ time.
+    Given $n$ 3D-coordinates where no four points lie on the same plane, compute its convex hull (smallest polyhedron that contains all points). KACTL version runs in $O(n^2)$ time, but an expected $O(n \log n)$ time algorithm exists as well.
 
     > Kattis problem(s) to try on: [worminapple](https://open.kattis.com/problems/worminapple)
 
@@ -372,6 +410,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
     Kruskal's algorithm to compute the minimum spanning tree (MST) and its cost using UFDS. Runs in $O(E\log E)$ time.
 
     > Kattis problem(s) to try on: [minimumspanningtree](https://open.kattis.com/problems/minimumspanningtree), [freckles](https://open.kattis.com/problems/freckles), [lostmap](https://open.kattis.com/problems/lostmap), [treehouses](https://open.kattis.com/problems/treehouses), [gridmst](https://open.kattis.com/problems/gridmst)
+
+- [`wdsu_dynamic_mst`](https://github.com/RussellDash332/pytils/blob/main/wdsu_dynamic_mst.py)
+
+    Weighted disjoint sets, particularly used to solve the dynamic MST problem: maintain MST given some edge insertions.
+
+    > Kattis problem(s) to try on: [brillianceofwings2](https://open.kattis.com/problems/brillianceofwings2)
 
 #### Shortest Paths
 - [`sssp_bellman_ford`](https://github.com/RussellDash332/pytils/blob/main/sssp_bellman_ford.py)
@@ -460,6 +504,24 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [joggingtrails](https://open.kattis.com/problems/joggingtrails)
 
+- [`dominator_tree`](https://github.com/RussellDash332/pytils/blob/main/dominator_tree.py)
+
+    Constructs the dominator tree on a directed graph. More details within the code.
+
+    > Kattis problem(s) to try on: [roadblock](https://open.kattis.com/problems/roadblock)
+
+- [`havel_hakimi_graph_realization`](https://github.com/RussellDash332/pytils/blob/main/havel_hakimi_graph_realization.py)
+
+    Solves the graph realization, which constructs an undirected graph given the degree sequence (array of degrees of each vertex).
+
+    > Kattis problem(s) to try on: [kjordaemikonigsbergs](https://open.kattis.com/problems/kjordaemikonigsbergs)
+
+- [`heavy_light_decomposition`](https://github.com/RussellDash332/pytils/blob/main/heavy_light_decomposition.py)
+
+    Heavy-light decomposition on a tree graph to efficiently answer aggregate queries on it, e.g. sum/max path between any two vertices in the tree.
+
+    > Kattis problem(s) to try on: [vedur](https://open.kattis.com/problems/vedur), [vedurvegakerfi](https://open.kattis.com/problems/vedurvegakerfi)
+
 - [`hierholzer_eulerian_cycle`](https://github.com/RussellDash332/pytils/blob/main/hierholzer_eulerian_cycle.py)
 
     Prints the Eulerian circuit given a directed Eulerian graph (visits every edge **exactly** once).
@@ -507,6 +569,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
     Backtracking with optimized prunings to solve cryptarithm.
 
     > Kattis problem(s) to try on: [greatswercporto](https://open.kattis.com/problems/greatswercporto), [sendmoremoney](https://open.kattis.com/problems/sendmoremoney)
+
+- [`gale_shapley_stable_matching`](https://github.com/RussellDash332/pytils/blob/main/gale_shapley_stable_matching.py)
+
+    Constructs a stable matching given the list of preferences from both sides.
+
+    > Kattis problem(s) to try on: [jealousyoungsters](https://open.kattis.com/problems/jealousyoungsters)
 
 - [`inverse_index`](https://github.com/RussellDash332/pytils/blob/main/inverse_index.py)
 
