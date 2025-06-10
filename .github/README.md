@@ -115,9 +115,9 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
 - [`fenwick_tree_rsq`](https://github.com/RussellDash332/pytils/blob/main/fenwick_tree_rsq.py)
 
-    Classic Fenwick tree to answer range sum queries (RSQ). Both PURQ (point update, range query) and RURQ (range update, range query) versions are available. Updates and queries all run in $O(\log n)$ time.
+    Classic Fenwick tree to answer range sum queries (RSQ). Both PURQ (point update, range query) and RURQ (range update, range query) versions are available. Updates and queries all run in $O(\log n)$ time, except for that of 2D Fenwick tree which runs in $O(\log^2 n)$ time.
 
-    > Kattis problem(s) to try on: [fenwick](https://open.kattis.com/problems/fenwick), [supercomputer](https://open.kattis.com/problems/supercomputer), [taxtherich](https://open.kattis.com/problems/taxtherich), [hringvegurinn](https://open.kattis.com/problems/hringvegurinn), [tonlistarlisti](https://open.kattis.com/problems/tonlistarlisti)
+    > Kattis problem(s) to try on: [fenwick](https://open.kattis.com/problems/fenwick), [supercomputer](https://open.kattis.com/problems/supercomputer), [taxtherich](https://open.kattis.com/problems/taxtherich), [hringvegurinn](https://open.kattis.com/problems/hringvegurinn), [tonlistarlisti](https://open.kattis.com/problems/tonlistarlisti), [keepthemseparated](https://open.kattis.com/problems/keepthemseparated)
 
 - [`fenwick_tree_rmq`](https://github.com/RussellDash332/pytils/blob/main/fenwick_tree_rmq.py)
 
