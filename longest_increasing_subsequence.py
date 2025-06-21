@@ -20,6 +20,16 @@ def lis(arr):
     while curr != None: final.append(curr); curr = par[curr]
     return final[::-1]
 
+# change e-1 to e if you want non-decreasing instead
+from bisect import *
+def lis(A):
+    B = []
+    for e in A:
+        p = bisect(B, e-1)
+        if p == len(B): B.append(e)
+        else: B[p] = e
+    return len(B)
+
 # https://stackoverflow.com/questions/22923646/number-of-all-longest-increasing-subsequences
 from bisect import *
 def count_lis(A, distinct=True):
@@ -37,31 +47,37 @@ if __name__ == '__main__':
     # general (1)
     A = [3, 2, 2, 4, 5, 8, 7]
     print(lis(A))
+    print(len_lis(A))
     print(count_lis(A))
 
     # general (2)
     A = [52, 81, 43, 81, 18, 85, 71, 87]
     print(lis(A))
+    print(len_lis(A))
     print(count_lis(A))
 
     # general (2)
     A = [16, 5, 8, 6, 1, 10, 5, 2, 15, 3, 2, 4, 1]
     print(lis(A))
+    print(len_lis(A))
     print(count_lis(A))
 
     # empty
     A = []
     print(lis(A))
+    print(len_lis(A))
     print(count_lis(A))
 
     # increasing
     A = [1, 2, 3, 4, 5, 6]
     print(lis(A))
+    print(len_lis(A))
     print(count_lis(A))
 
     # same
     A = [1]*10
     print(lis(A))
+    print(len_lis(A))
     print(count_lis(A))
 
     from random import *
@@ -69,14 +85,17 @@ if __name__ == '__main__':
     a = [*range(10**4)]
     shuffle(a)
     print(len(lis(a)))
+    print(len_lis(a))
     print(count_lis(a))
 
     # random general (1)
     a = [randint(1, 100) for _ in range(10**4)]
     print(len(lis(a)))
+    print(len_lis(a))
     print(count_lis(a))
 
     # random general (2)
     a = [randint(-10**18, 10**18) for _ in range(10**5)]
     print(len(lis(a)))
+    print(len_lis(a))
     print(count_lis(a))
