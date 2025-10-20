@@ -22,32 +22,32 @@ def havel_hakimi(D):
 
 # Takes in an outdegree sequence O and an indegree sequence I, returns an edge list E with the given degree sequences
 # The list O and I will get modified during the process, so copy the list if needed after
-from bisect import *
+from heapq import *
 def kleitman_wang(O, I):
-    E = []; L = 1; R = max(O+I); P = [[] for _ in range(R+1)]; Q = [[] for _ in range(R+1)]; T = []; J = [i-1 for i in range(R+1)]; f = lambda x: O[x]
+    E = []; N = max(O+I); L = 1; P = [[] for _ in range(N+1)]; Q = [[] for _ in range(N+1)]; T = []; J = [i-1 for i in range(N+1)]
     for i in range(len(O)): P[O[i]].append(i)
-    for i in range(R+1):
-        for u in P[i]: Q[I[u]].append(u)
-        P[i] = []
-    for i in range(R+1):
-        for u in Q[i]: P[O[u]].append(u)
-    while L <= R:
+    for i in range(N+1):
+        while P[i]: u = P[i].pop(); Q[I[u]].append((-O[u], u))
+    for i in range(N+1):
+        for _, u in Q[i]: P[O[u]].append((-I[u], u))
+    for i in range(N+1): heapify(P[i]); heapify(Q[i])
+    while L <= N:
         if not P[L] and not Q[L]: L += 1; continue
         sw = not P[L]
         if sw: P, Q, O, I = Q, P, I, O
-        v = P[L].pop(); S = R; B = []; t = 0
+        _, v = heappop(P[L]); S = N; B = []; t = 0
         for _ in range(L):
-            while S and (not Q[S] or (len(Q[S]) == 1 and Q[S][0] == v)): B.append(S); S = J[S]
+            while S and (not Q[S] or (len(Q[S]) == 1 and Q[S][0][1] == v)): B.append(S); S = J[S]
             if S < 1: return
-            u = Q[S].pop()
-            if u == v: u = Q[S].pop(); t = S
+            _, u = heappop(Q[S])
+            if u == v: _, u = heappop(Q[S]); t = S
             E.append((u, v) if sw else (v, u)); O[v] -= 1; I[u] -= 1
             if S > 1: T.append((u, S-1))
-        if t: insort(Q[t], v, key=f)
+        if t: heappush(Q[t], (-O[v], v))
         while T:
             u, x = T.pop()
             if J[x+1] != x: J[x], J[x+1] = J[x+1], x
-            insort(Q[x], u, key=f)
+            heappush(Q[x], (-O[u], u))
         for b in B:
             if not P[J[b]] and not Q[J[b]]: J[b] = J[J[b]]
         L -= S==L
@@ -59,7 +59,7 @@ if __name__ == '__main__':
 
     def validate_hh(D, show_el=True):
         T = time(); E = havel_hakimi(D)
-        if E == None: return print('[hh]', None)
+        if show_el and E == None: return print('[hh]', None)
         X = [0]*len(D)
         for a, b in E: X[a] += 1; X[b] += 1
         assert X == D
@@ -70,7 +70,7 @@ if __name__ == '__main__':
         assert len(O) == len(I)
         O2 = [*O]; I2 = [*I]
         T = time(); E = kleitman_wang(O2, I2)
-        if E == None: return print('[kw]', None)
+        if show_el and E == None: return print('[kw]', None)
         X = [0]*len(O); Y = [0]*len(I)
         for a, b in E: X[a] += 1; Y[b] += 1
         if show_el: print('[kw]', E)
@@ -92,6 +92,8 @@ if __name__ == '__main__':
     validate_kw([1, 0], [0, 1])
     validate_kw([2, 1, 2, 1, 3], [0, 2, 2, 3, 2])
     validate_kw([3]*7, [3]*7)
+    validate_kw([2, 2, 1], [1, 2, 2])
+    validate_kw([2, 2, 1], [1, 1, 2])
 
     # Examples from https://d3gt.com/unit.html?havel-hakimi
     validate_hh([4, 3, 3, 2, 2])
@@ -116,8 +118,8 @@ if __name__ == '__main__':
 
     # Another random big graph?
     from random import *
-    n = randint(5000, 10**5)
-    m = randint(4*10**4, 3*10**6)
+    n = randint(5*10**4, 10**5)
+    m = randint(8*10**4, 3*10**6)
     print(f'Random graph with {n} vertices and {m} edges')
     graph = [set() for _ in range(n)]
     deg = [0]*n; indeg = [0]*n; outdeg = [0]*n
