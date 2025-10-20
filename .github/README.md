@@ -510,11 +510,11 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [roadblock](https://open.kattis.com/problems/roadblock)
 
-- [`havel_hakimi_graph_realization`](https://github.com/RussellDash332/pytils/blob/main/havel_hakimi_graph_realization.py)
+- [`graph_realization`](https://github.com/RussellDash332/pytils/blob/main/graph_realization.py)
 
-    Solves the graph realization, which constructs an undirected graph given the degree sequence (array of degrees of each vertex).
+    Solves the graph realization problem, which constructs an undirected/directed graph given the degree sequence (array of degrees of each vertex). Undirected version uses the Havel-Hakimi algorithm, while the directed version uses the Kleitman-Wang algorithm.
 
-    > Kattis problem(s) to try on: [kjordaemikonigsbergs](https://open.kattis.com/problems/kjordaemikonigsbergs)
+    > Kattis problem(s) to try on: [kjordaemikonigsbergs](https://open.kattis.com/problems/kjordaemikonigsbergs), [followerforensics](https://open.kattis.com/problems/followerforensics)
 
 - [`heavy_light_decomposition`](https://github.com/RussellDash332/pytils/blob/main/heavy_light_decomposition.py)
 
