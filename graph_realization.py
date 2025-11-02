@@ -5,6 +5,7 @@ def havel_hakimi(D):
     for i in range(len(D)): Q[D[i]].append(i)
     while L <= R:
         if not Q[L]: L += 1; continue
+        #while not Q[R]: R = J[R]
         v = Q[L].pop(); S = R; B = []
         for _ in range(L):
             while S and not Q[S]: B.append(S); S = J[S]
@@ -24,18 +25,14 @@ def havel_hakimi(D):
 # The list O and I will get modified during the process, so copy the list if needed after
 from heapq import *
 def kleitman_wang(O, I):
-    E = []; N = max(O+I); L = 1; P = [[] for _ in range(N+1)]; Q = [[] for _ in range(N+1)]; T = []; J = [i-1 for i in range(N+1)]
-    for i in range(len(O)): P[O[i]].append(i)
-    for i in range(N+1):
-        while P[i]: u = P[i].pop(); Q[I[u]].append((-O[u], u))
-    for i in range(N+1):
-        for _, u in Q[i]: P[O[u]].append((-I[u], u))
-    for i in range(N+1): heapify(P[i]); heapify(Q[i])
-    while L <= N:
+    E = []; R = max(O+I); L = 1; P = [[] for _ in range(R+1)]; Q = [[] for _ in range(R+1)]; T = []; J = [i-1 for i in range(R+1)]
+    for i in range(len(O)): P[O[i]].append((-I[i], i)); Q[I[i]].append((-O[i], i))
+    for i in range(R+1): heapify(P[i]); heapify(Q[i])
+    while L <= R:
         if not P[L] and not Q[L]: L += 1; continue
-        sw = not P[L]
-        if sw: P, Q, O, I = Q, P, I, O
-        _, v = heappop(P[L]); S = N; B = []; t = 0
+        #while not P[R] and not Q[R]: R = J[R]
+        if (sw:=not P[L]): P, Q, O, I = Q, P, I, O
+        _, v = heappop(P[L]); S = R; B = []; t = 0
         for _ in range(L):
             while S and (not Q[S] or (len(Q[S]) == 1 and Q[S][0][1] == v)): B.append(S); S = J[S]
             if S < 1: return
