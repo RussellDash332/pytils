@@ -1,3 +1,19 @@
+# Faster, sweep on a sorted set/list
+# Assumption: pts are list of (x, y) points
+# Can change s to SortedList as well
+def closest_pair(pts):
+    pts.sort(); best = (1e38, None, None); j = 0; n = len(pts); s = []
+    for i in range(n):
+        d = ceil(best[0]**.5); x, y = pts[i]
+        while j < n and x-pts[j][0] >= d: s.remove((p[j][1], p[j][0])); j += 1
+        b = bisect_left(s, (y-d, x))
+        for k in range(b, min(b+5, len(s))):
+            e = s[k]; new = (x-e[1])**2+(y-e[0])**2
+            if new < best[0]: best = (new, (x, y), (e[1], e[0]))
+        insort(s, (y, x))
+    return best
+
+# Slower divide-and-conquer, but simpler
 # Assumption: px and py are list of complex numbers, px sorted by x, py sorted by y
 def closest_pair(px, py):
     if len(px) < 40: # just brute-force it
