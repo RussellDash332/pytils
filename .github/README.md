@@ -60,7 +60,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 #### Miscellaneous
 - [`fast_fourier_transform`](https://github.com/RussellDash332/pytils/blob/main/fast_fourier_transform.py)
 
-    Fast Fourier Transform (FFT) and number theoretic transform (NTT) used mainly for multiplying two polynomials, runs in $O(n\log n)$ time, where $n$ is the polynomial degree.
+    Fast Fourier Transform (FFT) and number theoretic transform (NTT) used mainly for multiplying two polynomials, runs in $O(n\log n)$ time, where $n$ is the polynomial degree. Extends to polynomial division and linear recurrence using Kitamasa's algorithm.
 
     > Kattis problem(s) to try on: [polymul1](https://open.kattis.com/problems/polymul1), [polymul2](https://open.kattis.com/problems/polymul2), [fastfouriertransform](https://open.kattis.com/problems/fastfouriertransform), [allmodulopythagorean](https://open.kattis.com/problems/allmodulopythagorean), [allpairsums](https://open.kattis.com/problems/allpairsums), [numbertheoretictransform](https://open.kattis.com/problems/numbertheoretictransform), [diceresults](https://open.kattis.com/problems/diceresults)
 
