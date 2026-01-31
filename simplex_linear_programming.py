@@ -3,6 +3,7 @@
 
 # Credits: Brandon Tang
 # Should work on general cases, especially when it includes a lower bound
+# It also helps to negate all entries of A, and then change C+[0]*2 to [-x for x in C]+[0]*2
 INF = float('inf'); EPS = 1e-5
 def simplex(A, C):
     def pivot(r, s):
@@ -22,14 +23,14 @@ def simplex(A, C):
     m = len(A); n = len(A[0])-1; N = [*range(n), -1]; B = [*range(n, n+m)]; D = [*([*A[i], -1] for i in range(m)), C+[0]*2, [0]*(n+2)]
     for i in range(m): D[i][-2], D[i][-1] = D[i][-1], D[i][-2]
     D[-1][n] = 1; r = min(range(m), key=lambda x: D[x][-1])
-    if D[r][-1] < -EPS and (pivot(r, n) or not find(1) or D[-1][-1] < -EPS): return -INF, None
+    if D[r][-1] < -EPS and (pivot(r, n) or not find(1) or D[-1][-1] < -EPS): return None
     for i in range(m): B[i] == -1 and pivot(i, min(range(n), key=lambda x: (D[i][x], N[x])))
     if find(0):
         x = [0]*n
         for i in range(m):
             if 0 <= B[i] < n: x[B[i]] = D[i][-1]
-        return sum(C[i]*x[i] for i in range(n)), x # or -D[m][-1]
-    else: return -INF, None
+        return x, -D[m][-1], sum(C[i]*x[i] for i in range(n)) # <vector, opt, alternate_opt>; modify as required
+    else: return None
 
 # Old version (might be faster), but only works on positive A-entries
 def simplex_old(A, C):
