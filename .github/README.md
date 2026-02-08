@@ -238,6 +238,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [passwordrotation](https://open.kattis.com/problems/passwordrotation)
 
+- [`string_hashing`](https://github.com/RussellDash332/pytils/blob/main/string_hashing.py)
+
+    Classic polynomial string hashing in $O(|S|)$ time, where $S$ is the string to hash. Further string slicing queries can be done in $O(1)$ time.
+
+    > Kattis problem(s) to try on: [hashing](https://open.kattis.com/problems/hashing), [animal](https://open.kattis.com/problems/animal), [doublets](https://open.kattis.com/problems/doublets)
+
 - [`z_function`](https://github.com/RussellDash332/pytils/blob/main/z_function.py)
 
     Computes the Z-function where `z = [lcp(s, s[i:]) for i in range(len(s))]`.
