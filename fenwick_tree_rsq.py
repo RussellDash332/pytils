@@ -9,7 +9,7 @@ class FenwickTree:
     def get(self, idx):
         s, idx = 0, min(idx, self.n)
         while idx > 0: s += self.ft[idx]; idx -= idx&(-idx)
-        return 
+        return s
 
 # RUPQ version
 class FenwickTree:
