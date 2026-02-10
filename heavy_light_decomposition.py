@@ -53,7 +53,7 @@ def get(x, y):
 sz = [0]*n; par = [0]*n; dep = [0]*n; pos = [0]*n; cur = [0]; chn = [0]*n; A = [DEFAULT_VALUE]*2*n; ds(0, -1); dh(0, 0, 0, DEFAULT_VALUE)
 for i in range(n):
     for j in range(i):
-        print(f'Maximum of {["node", "edge"][USE_EDGE_VALUES]} values along the path between {(i, j)}:', q:=get(i, j))
+        print(f'{["Minimum", "Maximum"][MAXIMIZE]} of {["node", "edge"][USE_EDGE_VALUES]} values along the path between {(i, j)}:', q:=get(i, j))
         assert q == get(j, i)
 print('Vertex values:', V)
 print('Edge values:', G)
