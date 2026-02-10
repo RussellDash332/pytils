@@ -43,13 +43,20 @@ if __name__ == '__main__':
 # oop version
 class Hash:
     def __init__(self, s):
-        self.h1 = [0]; self.h2 = [0]
-        for i in range(N): c = ord(S[i]); self.h1.append((self.h1[-1]*P+c)%M); self.h2.append((self.h2[-1]*P2+c)%M2)
+        self.h = [0]; self.n = len(s)
+        for i in range(self.n): self.h.append((self.h[-1]*P+ord(S[i]))%M)
+    def get(self, l, r):
+        return (self.h[r]-self.h[l]*F[r-l])%M
+    def replace(self, l, r, x, c):
+        return (self.get(l, x)*F[r-x]+ord(c)*F[r-x-1]+self.get(x+1, r))%M
+class Hash:
+    def __init__(self, s):
+        self.h1 = [0]; self.h2 = [0]; self.n = len(s)
+        for i in range(self.n): c = ord(S[i]); self.h1.append((self.h1[-1]*P+c)%M); self.h2.append((self.h2[-1]*P2+c)%M2)
     def get(self, l, r):
         return (self.h1[r]-self.h1[l]*F[r-l])%M, (self.h2[r]-self.h2[l]*F2[r-l])%M2
     def replace(self, l, r, x, c):
-        a, b = self.get(l, x); p, q = self.get(x+1, r)
-        return (a*F[r-x]+ord(c)*F[r-x-1]+p)%M, (b*F2[r-x]+ord(c)*F2[r-x-1]+q)%M2
+        a, b = self.get(l, x); p, q = self.get(x+1, r); return (a*F[r-x]+ord(c)*F[r-x-1]+p)%M, (b*F2[r-x]+ord(c)*F2[r-x-1]+q)%M2
 
 if __name__ == '__main__':
     H = Hash(S)
