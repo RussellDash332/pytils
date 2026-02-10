@@ -24,21 +24,6 @@ def rq(i, j):
         if (j^1)&1: j >>= 1
         else: x = obj(x, A[j-1]); j >>= 1
     return x
-def ds(v, p):
-    sz[v] = 1; par[v] = p
-    for w in G[v]:
-        if w != p: dep[w] = dep[p]+1; sz[v] += ds(w, v)
-    return sz[v]
-def dh(v, p, t, x):
-    S = [(v, p, t, x)]; cur = 0
-    while S:
-        v, p, t, x = S.pop(); pos[v] = cur; cur += 1; chn[v] = t; best = hvy = -1; pu(pos[v], x if USE_EDGE_VALUES else V[v])
-        for w in G[v]:
-            if w != p and sz[w] > best: best = sz[w]; hvy = w
-        if hvy == -1: continue
-        for w in G[v]:
-            if p != w != hvy: S.append((w, v, w, G[v][w]))
-        S.append((hvy, v, t, G[v][hvy]))
 def get(x, y):
     xa = []; ya = []; z = DEFAULT_VALUE; ac = -1; ox = x; oy = y
     while x != -1: xa.append(x); x = par[chn[x]]
@@ -52,7 +37,25 @@ def get(x, y):
         z = obj(z, rq(pos[ac]+USE_EDGE_VALUES, pos[x]+1))
     return z
 
-sz = [0]*n; par = [0]*n; dep = [0]*n; pos = [0]*n; chn = [0]*n; A = [DEFAULT_VALUE]*2*n; ds(0, -1); dh(0, 0, 0, DEFAULT_VALUE)
+sz = [1]*n; par = [0]*n; pos = [0]*n; chn = [0]*n; A = [DEFAULT_VALUE]*2*n; Q = [(0, -1, 0)]; S = [(0, 0, 0, DEFAULT_VALUE)]; cur = 0
+while Q:
+    v, p, b = Q.pop()
+    if b:
+        for w in G[v]:
+            if w != p: sz[v] += sz[w]
+    else:
+        par[v] = p; Q.append((v, p, 1))
+        for w in G[v]:
+            if w != p: Q.append((w, v, 0))
+while S:
+    v, p, t, x = S.pop(); pos[v] = cur; cur += 1; chn[v] = t; best = hvy = -1; pu(pos[v], x if USE_EDGE_VALUES else V[v])
+    for w in G[v]:
+        if w != p and sz[w] > best: best = sz[w]; hvy = w
+    if hvy == -1: continue
+    for w in G[v]:
+        if p != w != hvy: S.append((w, v, w, G[v][w]))
+    S.append((hvy, v, t, G[v][hvy]))
+
 for i in range(n):
     for j in range(i):
         print(f'{["Minimum", "Maximum"][MAXIMIZE]} of {["node", "edge"][USE_EDGE_VALUES]} values along the path between {(i, j)}:', q:=get(i, j))
