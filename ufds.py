@@ -11,7 +11,7 @@ class UFDS:
             else: s.p[x] = y; s.r[y] += s.r[x] == s.r[y]
 
 # with rollback
-class UFDS:
+class UFDSRB:
     def __init__(s, n):
         s.p = [-1]*n; s.o = []
     def find(s, u):
