@@ -423,9 +423,9 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [minimumspanningtree](https://open.kattis.com/problems/minimumspanningtree), [freckles](https://open.kattis.com/problems/freckles), [lostmap](https://open.kattis.com/problems/lostmap), [treehouses](https://open.kattis.com/problems/treehouses), [gridmst](https://open.kattis.com/problems/gridmst)
 
-- [`minimum_directed_spanning_tree_chu_liu_edmonds`](https://github.com/RussellDash332/pytils/blob/main/minimum_directed_spanning_tree_chu_liu_edmonds.py)
+- [`minimum_directed_spanning_tree_edmonds`](https://github.com/RussellDash332/pytils/blob/main/minimum_directed_spanning_tree_edmonds.py)
 
-    Minimum **directed** spanning tree from a given root using Chu-Liu-Edmonds algorithm. Runs in $O(E\log E)$ time.
+    Minimum **directed** spanning tree from a given root using (Chu-Liu-)Edmonds algorithm. Runs in $O(E\log E)$ time for the sparse variant and $O(E\log V + V^2)$ time for the dense variant.
 
     > Kattis problem(s) to try on: [fastestspeedrun](https://open.kattis.com/problems/fastestspeedrun)
 
