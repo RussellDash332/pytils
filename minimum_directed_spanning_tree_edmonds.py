@@ -92,7 +92,7 @@ def edmonds_dense(G, root, reconstruct_tree=True):
     if reconstruct_tree: U = UFDSC(N); H = []
     else: U = UFDS(N)
     while 1:
-        r = U.find(root)
+        r = U.find(root); D = []; S = [0]*N; S[r] = 1; q = 2; Y = [0]*N
         for v in range(N):
             if v == U.find(v): W[v] = INF if v != r else 0; C[v] = None
         for v in range(N):
@@ -102,7 +102,6 @@ def edmonds_dense(G, root, reconstruct_tree=True):
                 if W[x] > c: W[x] = c; C[x] = (u, v)
         for v in range(N):
             if v == U.find(v) and W[v] >= INF: return None, None
-        D = []; S = [0]*N; S[r] = 1; q = 2; Y = [0]*N
         for v in range(N):
             if v == U.find(v) and not S[v]:
                 u = v; s = []
@@ -112,21 +111,20 @@ def edmonds_dense(G, root, reconstruct_tree=True):
                     while s[-1] != u: Y[s[-1]] = 1; c.append(s.pop())
                     D.append(c)
                 q += 1
-        if D:
+        if not D:
             for v in range(N):
-                if Y[x:=U.find(v)]:
-                    if v == x: Z += W[v]
-                    L[v] += W[x]
-            for k in D:
-                for c in k: U.union(k[0], c)
-                if reconstruct_tree:
-                    e = []
-                    for c in k: e.append(C[c])
-                    H.append((k, e))
-            continue
+                if v == U.find(v): Z += W[v]
+            break
         for v in range(N):
-            if v == U.find(v): Z += W[v]
-        break
+            if Y[x:=U.find(v)]:
+                if v == x: Z += W[v]
+                L[v] += W[x]
+        for k in D:
+            for c in k: U.union(k[0], c)
+            if reconstruct_tree:
+                e = []
+                for c in k: e.append(C[c])
+                H.append((k, e))
     if not reconstruct_tree: return Z, None
     P = [-1]*N
     for v in range(N):
