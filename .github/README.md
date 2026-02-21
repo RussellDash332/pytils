@@ -152,6 +152,10 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [aneasyarray](https://open.kattis.com/problems/aneasyarray)
 
+- [`sqrt_tree`](https://github.com/RussellDash332/pytils/blob/main/sqrt_tree.py)
+
+    Sqrt tree. Precomputation of the table takes $O(N \log \log N)$ time where $N$ is the length of the array, range query takes $O(1)$ time, and update takes $O(\sqrt{N})$ time.
+
 - [`sqrt_decomposition`](https://github.com/RussellDash332/pytils/blob/main/sqrt_decomposition.py)
 
     Sqrt-based data structure to support updates and sum queries in $O(\sqrt{n})$ time.
