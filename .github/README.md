@@ -146,6 +146,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
     Incomplete implementation of the wavelet tree.
 
 #### Miscellaneous
+- [`sparse_table`](https://github.com/RussellDash332/pytils/blob/main/sparse_table.py)
+
+    Sparse table for range queries on immutable arrays. Precomputation of the table takes $O(N \log N)$ time where $N$ is the length of the array, and max/min query takes $O(1)$ time while sum query takes $O(\log N)$ time.
+
+    > Kattis problem(s) to try on: [aneasyarray](https://open.kattis.com/problems/aneasyarray)
+
 - [`sqrt_decomposition`](https://github.com/RussellDash332/pytils/blob/main/sqrt_decomposition.py)
 
     Sqrt-based data structure to support updates and sum queries in $O(\sqrt{n})$ time.

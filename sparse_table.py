@@ -1,0 +1,33 @@
+A = [564, 7167, -4069, -3244, 579, 199, -9838, 2913, 9796, 4734]
+N = len(A)
+K = len(bin(N))-1
+
+
+# Range sum query
+S = [[*A], *([0]*N for _ in range(K))]
+for i in range(1, K+1):
+    for j in range(N+1-2**i): S[i][j] = S[i-1][j]+S[i-1][j+2**(i-1)]
+def query(l, r):
+    s = 0
+    for i in range(K, -1, -1):
+        if 1<<i <= r-l: s += S[i][l]; l += 1<<i
+    return s
+
+if __name__ == '__main__':
+    for r in range(N+1):
+        for l in range(r+1): assert query(l, r) == sum(A[l:r]), [(l, r), (query(l, r), sum(A[l:r]))]
+
+
+# Range min/max query
+# for range min query, change all max to min
+S = [[*A], *([0]*N for _ in range(K))]
+D = max(-10**18, 10**18)
+for i in range(1, K+1):
+    for j in range(N+1-2**i): S[i][j] = max(S[i-1][j], S[i-1][j+2**(i-1)])
+def query(l, r):
+    if l >= r: return D
+    return max(S[i:=(r-l).bit_length()-1][l], S[i][r-2**i])
+
+if __name__ == '__main__':
+    for r in range(N+1):
+        for l in range(N+1): assert query(l, r) == max(A[l:r], default=D), [(l, r), (query(l, r), max(A[l:r], default=D))]
