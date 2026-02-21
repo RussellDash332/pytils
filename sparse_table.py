@@ -5,7 +5,7 @@ K = len(bin(N))-1
 
 # Range sum query
 S = [[*A]]; B = 1
-for i in range(1, K+1): S.append([S[-1][j]+S[-1][j+B] for j in range(N+1-(1<<i))]); B <<= 1
+for i in range(1, K+1): S.append([S[-1][j]+S[-1][j+B] for j in range(N+1-2*B)]); B <<= 1
 def query(l, r):
     s = 0
     for i in range(K, -1, -1):
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 # for range min query, change all max to min
 S = [[*A]]; B = 1
 D = -max(-10**18, 10**18)
-for i in range(1, K+1): S.append([max(S[-1][j], S[-1][j+B]) for j in range(N+1-(1<<i))]); B <<= 1
+for i in range(1, K+1): S.append([max(S[-1][j], S[-1][j+B]) for j in range(N+1-2*B)]); B <<= 1
 def query(l, r):
     if l >= r: return D
     return max(S[i:=(r-l).bit_length()-1][l], S[i][r-(1<<i)])
