@@ -11,7 +11,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 #### Prime Numbers
 - [`number_theory_prime_sieve`](https://github.com/RussellDash332/pytils/blob/main/number_theory_prime_sieve.py)
 
-    The classic Eratosthenes prime sieve that runs in $O(n\log\log n)$ time. Makes use of an array that stores the smallest prime factor.
+    The classic Eratosthenes (linear) prime sieve that runs in $O(n)$ time. Makes use of an array that stores the smallest prime factor.
 
 - [`number_theory_prime_factorization`](https://github.com/RussellDash332/pytils/blob/main/number_theory_prime_factorization.py)
 

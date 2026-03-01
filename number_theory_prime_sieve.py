@@ -1,21 +1,12 @@
+from array import *
 LIMIT = 10**6
-spf = list(range(LIMIT+1))
+F = array('I', [0]*LIMIT)
+P = array('I')
 
-# If p is prime, spf[p] == p
-primes = []; p = 2
-while p <= LIMIT:
-    if spf[p] == p:
-        primes.append(p)
-        for i in range(p*p, LIMIT+1, p):
-            if spf[i] == i: spf[i] = p
-    if p == 2: p -= 1
-    p += 2
-
-# Alternative approach
-primes = [2]; p = 3
-while p <= LIMIT:
-    if spf[p] == p:
-        primes.append(p)
-        for i in range(p*p, LIMIT+1, 2*p):
-            if spf[i] == i: spf[i] = p
-    p += 2
+# If p>=2 is prime, F[p] == p (F = smallest prime factor)
+for i in range(2, LIMIT):
+    if F[i] < 1: F[i] = i; P.append(i)
+    for p in P:
+        if (j:=i*p) >= LIMIT: break
+        F[j] = p
+        if p == F[i]: break
