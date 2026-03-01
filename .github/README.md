@@ -196,6 +196,18 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [coveredwalkway](https://open.kattis.com/problems/coveredwalkway), [marathon2](https://open.kattis.com/problems/marathon2)
 
+- [`longest_common_subsequence`](https://github.com/RussellDash332/pytils/blob/main/longest_common_subsequence.py)
+
+    Finds the LCS of two sequences $A$ and $B$ in $O(|A||B|)$ time. If $A$ and $B$ are two permutations of the same sequence with length $N$, can be solved in $O(N \log N)$ time.
+
+    > Kattis problem(s) to try on: [cardhand](https://open.kattis.com/problems/cardhand), [pandachess](https://open.kattis.com/problems/pandachess), [princeandprincess](https://open.kattis.com/problems/manhattprinceandprincessanmornings), [signals](https://open.kattis.com/problems/signals), [inflagrantedelicto](https://open.kattis.com/problems/inflagrantedelicto)
+
+- [`shortest_common_supersequence`](https://github.com/RussellDash332/pytils/blob/main/shortest_common_supersequence.py)
+
+    Finds the SCS of two sequences $A$ and $B$ in $O(|A||B|)$ time.
+
+    > Kattis problem(s) to try on: [nafnagift](https://open.kattis.com/problems/nafnagift)
+
 - [`longest_increasing_subsequence`](https://github.com/RussellDash332/pytils/blob/main/longest_increasing_subsequence.py)
 
     Finds the LIS length and outputs any of them. Another variant counts the number of distinct LIS in an array of $n$ numbers. Both functions run in $O(n\log n)$ time.
