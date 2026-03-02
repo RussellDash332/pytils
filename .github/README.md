@@ -30,7 +30,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
 - [`number_theory_pollard_rho`](https://github.com/RussellDash332/pytils/blob/main/number_theory_pollard_rho.py)
 
-    Finds a trivial factor of an integer $n$. Also includes Brent modification for faster version. Expected to run in $O(n^\frac{1}{4})$ time.
+    Finds a trivial factor of an integer $n$. Also includes Brent modification for faster version. Expected to run in $O(\sqrt[4]{n}\log{n})$ time.
 
     > Kattis problem(s) to try on: [atrivialpursuit](https://open.kattis.com/problems/atrivialpursuit), [bigfactoring](https://open.kattis.com/problems/bigfactoring), [divisorsofasum](https://open.kattis.com/problems/divisorsofasum), [batchgcd](https://open.kattis.com/problems/batchgcd)
 
