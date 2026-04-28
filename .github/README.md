@@ -346,6 +346,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [closestpair1](https://open.kattis.com/problems/closestpair1), [closestpair2](https://open.kattis.com/problems/closestpair2)
 
+- [`compgeo_2d_furthest_pair`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_furthest_pair.py)
+
+    Furthest pair problem. Given $n$ 2D-coordinates, find the furthest pair among all $O(n^2)$ possible pairs. Runs in $O(n\log n)$ time.
+
+    > Kattis problem(s) to try on: [husahlaup](https://open.kattis.com/problems/husahlaup)
+
 - [`compgeo_2d_convex_hull`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_convex_hull.py)
 
     Given $n$ 2D-coordinates, compute its convex hull (smallest polygon that contains all points). Runs in $O(n\log n)$ time.
