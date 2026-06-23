@@ -493,6 +493,10 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [rootedsubtrees](https://open.kattis.com/problems/rootedsubtrees), [treehopping](https://open.kattis.com/problems/treehopping), [tourists](https://open.kattis.com/problems/tourists), [easyascab](https://open.kattis.com/problems/easyascab)
 
+- [`binary_lifting_lca`](https://github.com/RussellDash332/pytils/blob/main/binary_lifting_lca.py)
+
+    Compute LCA of any two vertices on a tree of $N$ vertices. Runs in $O(\log N)$ time per query and $O(N \log N)$ for the preprocessing.
+
 #### Network Flows
 - [`max_flow_ford_fulkerson`](https://github.com/RussellDash332/pytils/blob/main/max_flow_ford_fulkerson.py)
 
