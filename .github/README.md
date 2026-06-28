@@ -131,7 +131,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
 - [`segment_tree_dynamic`](https://github.com/RussellDash332/pytils/blob/main/segment_tree_dynamic.py)
 
-    Recursive implementation of the dynamic segment tree, which is currently optimized only for summation as aggregate. Updates and queries all run in $O(\log n)$ time.
+    Non-recursive implementation of the dynamic segment tree, defaults to range addition operation. Updates and queries all run in $O(\log n)$ time. If you need a different kind of binary operation, modify the combiner and the accumulator functions accordingly.
 
     > Kattis problem(s) to try on: [japaneselottery](https://open.kattis.com/problems/japaneselottery), [queryonarray](https://open.kattis.com/problems/queryonarray)
 
