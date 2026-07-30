@@ -60,9 +60,15 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 #### Miscellaneous
 - [`fast_fourier_transform`](https://github.com/RussellDash332/pytils/blob/main/fast_fourier_transform.py)
 
-    Fast Fourier Transform (FFT) and number theoretic transform (NTT) used mainly for multiplying two polynomials, runs in $O(n\log n)$ time, where $n$ is the polynomial degree. Extends to polynomial division and linear recurrence using Kitamasa's algorithm.
+    Fast Fourier Transform (FFT) and number theoretic transform (NTT) used mainly for multiplying two polynomials, runs in $O(n\log n)$ time, where $n$ is the polynomial degree. Extends to polynomial division and linear recurrence using Kitamasa's method to find the $n$-th term of a recurrence of order $k$ in $O(k \log k \log n)$ time.
 
     > Kattis problem(s) to try on: [polymul1](https://open.kattis.com/problems/polymul1), [polymul2](https://open.kattis.com/problems/polymul2), [fastfouriertransform](https://open.kattis.com/problems/fastfouriertransform), [allmodulopythagorean](https://open.kattis.com/problems/allmodulopythagorean), [allpairsums](https://open.kattis.com/problems/allpairsums), [numbertheoretictransform](https://open.kattis.com/problems/numbertheoretictransform), [diceresults](https://open.kattis.com/problems/diceresults)
+
+- [`linear_recurrence_berlekamp_massey`](https://github.com/RussellDash332/pytils/blob/main/linear_recurrence_berlekamp_massey.py)
+
+    Berlekamp-Massey algorithm to respectively find the minimum linear recurrence of order $L$ that generates the given $n$ terms in $O(n^2)$ time. The recurrence is unique iff $2L \le n$.
+
+    > Kattis problem(s) to try on: [forgottenhomework](https://open.kattis.com/problems/forgottenhomework), [iqtest](https://open.kattis.com/problems/iqtest)
 
 - [`number_theory_mobius_function`](https://github.com/RussellDash332/pytils/blob/main/number_theory_mobius_function.py)
 

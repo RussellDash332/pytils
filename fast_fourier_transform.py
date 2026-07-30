@@ -189,6 +189,8 @@ def div(P, Q):
 
 # Solves for a_n (mod M) given c = [c_0, c_1, ..., c_{k-1}] and a = [a_0, a_1, a_2, ..., a_{k-1}]
 # The recurrence is a_i = sum(c_j * a_{i-j-1} for j in range(k))
+
+# This is expected O(K log K log N) but might have a large constant factor due to div's implementation
 def kitamasa(c, a, n):
     d = [1]; x = [0, 1]; f = [-i for i in c[::-1]]+[1]
     while n:
@@ -196,10 +198,32 @@ def kitamasa(c, a, n):
         n >>= 1; x = div(mult(x, x), f)[1]
     return sum(p*q for p,q in zip(a,d))%M
 
+# Credits: Jeremy Lim
+# This is O(K^2 log N) but should be fast enough on most cases?
+def kitamasa2(c, a, n):
+    k = len(c)
+    def m(x, y):
+        z = [0]*(2*k+1)
+        for i in range(k+1):
+            if x[i]:
+                for j in range(k+1): z[i+j] = (z[i+j]+x[i]*y[j])%M
+        for i in range(2*k, k, -1):
+            if z[i]:
+                for j in range(k): z[i-j-1] = (z[i-j-1]+z[i]*c[j])%M
+        return z[:k+1]
+    b = [0, 1]+[0]*~-k; v = [1]+[0]*k; n += 1
+    while n:
+        if n%2: v = m(v, b)
+        b = m(b, b); n >>= 1
+    return sum(x*y for x,y in zip(a,v[1:]))%M
+
 if __name__ == '__main__':
     for i in range(1, 11):
         print(i, kitamasa([1, 1], [0, 1], i)) # F_i mod M
+        print(i, kitamasa2([1, 1], [0, 1], i)) # F_i mod M
     print(kitamasa([1, 1], [2, 1], 12)) # L_12 mod M
+    print(kitamasa2([1, 1], [2, 1], 12)) # L_12 mod M
     print(kitamasa([2, 1], [3, 5], 7), (1.5+2**-.5)*(1+2**.5)**7 + (1.5-2**-.5)*(1-2**.5)**7) # f(n) = 2*f(n-1) + f(n-2)
+    print(kitamasa2([2, 1], [3, 5], 7), (1.5+2**-.5)*(1+2**.5)**7 + (1.5-2**-.5)*(1-2**.5)**7) # f(n) = 2*f(n-1) + f(n-2)
     print(mult_mod([1, 2, 1], [1, -2, 1], 10**9+7))
     print(mult([1, 2, 1], [1, -2, 1]))
