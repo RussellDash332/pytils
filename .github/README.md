@@ -64,9 +64,9 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [polymul1](https://open.kattis.com/problems/polymul1), [polymul2](https://open.kattis.com/problems/polymul2), [fastfouriertransform](https://open.kattis.com/problems/fastfouriertransform), [allmodulopythagorean](https://open.kattis.com/problems/allmodulopythagorean), [allpairsums](https://open.kattis.com/problems/allpairsums), [numbertheoretictransform](https://open.kattis.com/problems/numbertheoretictransform), [diceresults](https://open.kattis.com/problems/diceresults)
 
-- [`linear_recurrence_berlekamp_massey`](https://github.com/RussellDash332/pytils/blob/main/linear_recurrence_berlekamp_massey.py)
+- [`linear_recurrence_berlekamp_massey_reeds_sloane`](https://github.com/RussellDash332/pytils/blob/main/linear_recurrence_berlekamp_massey_reeds_sloane.py)
 
-    Berlekamp-Massey algorithm to respectively find the minimum linear recurrence of order $L$ that generates the given $n$ terms in $O(n^2)$ time. The recurrence is unique iff $2L \le n$.
+    Berlekamp-Massey algorithm to respectively find the minimum linear recurrence of order $L$ that generates the given $n$ terms in $O(n^2)$ time. The recurrence is unique iff $2L \le n$. If the modulo $M$ is not prime, use Reeds-Sloane algorithm that handles non-prime modulos in $O(\omega(N)n^2 + N^\frac{1}{4})$ time, where $\omega(N)$ is the number of distinct prime factors of $N$.
 
     > Kattis problem(s) to try on: [forgottenhomework](https://open.kattis.com/problems/forgottenhomework), [iqtest](https://open.kattis.com/problems/iqtest)
 
