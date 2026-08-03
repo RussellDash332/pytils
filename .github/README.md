@@ -531,7 +531,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
 - [`mcbm_weighted_hungarian_kuhn_munkres`](https://github.com/RussellDash332/pytils/blob/main/mcbm_weighted_hungarian_kuhn_munkres.py)
 
-    Minimum (cost and) cardinality bipartite matching (MCBM) on a weighted bipartite graph using the Hungarian algorithm. Also known as the Kuhn-Munkres algorithm, which runs in $O(V^3)$ time. Rows are a single partition, then columns for the other partition.
+    Minimum (cost and) cardinality bipartite matching (MCBM) on a weighted bipartite graph using the Hungarian algorithm. Also known as the Kuhn-Munkres algorithm, which runs in $O(V^3)$ time. Rows are a single partition, then columns for the other partition. A variant of this is called the Jonker-Volgenant algorithm, which has the same $O(V^3)$ runtime, but with better constant factors.
 
     > Kattis problem(s) to try on: [hungarianservices](https://open.kattis.com/problems/hungarianservices), [bond](https://open.kattis.com/problems/bond), [cheatingatwar](https://open.kattis.com/problems/cheatingatwar), [hexagon](https://open.kattis.com/problems/hexagon)
 
