@@ -1,11 +1,13 @@
 # Faster, sweep on a sorted set/list
 # Assumption: pts are list of (x, y) points
 # Can change s to SortedList as well
-def closest_pair(pts):
-    pts.sort(); best = (1e38, None, None); j = 0; n = len(pts); s = []
+from bisect import *
+from math import *
+def closest_pair(p):
+    p.sort(); best = (1e38, None, None); j = 0; n = len(p); s = []
     for i in range(n):
-        d = ceil(best[0]**.5); x, y = pts[i]
-        while j < n and x-pts[j][0] >= d: s.remove((p[j][1], p[j][0])); j += 1
+        d = ceil(best[0]**.5); x, y = p[i]
+        while j < n and x-p[j][0] >= d: s.remove((p[j][1], p[j][0])); j += 1
         b = bisect_left(s, (y-d, x))
         for k in range(b, min(b+5, len(s))):
             e = s[k]; new = (x-e[1])**2+(y-e[0])**2
