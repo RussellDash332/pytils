@@ -1,28 +1,15 @@
 # Minimum clique cover
-def bt(cl, v, z):
-    if v < n:
-        for i in range(1, v+2):
-            cl[v] = i; d[i].append(v); ok = 1
-            for j in range(len(d[i])-1):
-                if am[d[i][j]][v] < 1: ok = 0; break
-            if ok and max(cl) < z: z = bt(cl, v+1, z)
-            cl[v] = 0; d[i].pop()
-    elif (m:=max(cl)) < z: z = m
-    return z
-
-def bt_show_clique(cl, v, z):
-    if v < n:
-        for i in range(1, v+2):
-            cl[v] = i; d[i].append(v); ok = 1
-            for j in range(len(d[i])-1):
-                if am[d[i][j]][v] < 1: ok = 0; break
-            if ok and max(cl) < z[0]: z = bt_show_clique(cl, v+1, z)
-            cl[v] = 0; d[i].pop()
-    elif (m:=max(cl)) < z[0]: z = (m, [*cl])
-    return z
+# Requires some predefined variables as shown below
+# If you don't need to show clique, just remove A and cl
+def bt(v, cc):
+    global Z, A
+    if cc >= Z: return
+    if v == n: Z = cc; A = [*cl]; return
+    for i in range(1, cc+2):
+        if cm[i]&am[v] == cm[i]: cl[v] = i; cm[i] |= 1<<v; bt(v+1, max(cc, i)); cm[i] ^= 1<<v; cl[v] = 0
 
 if __name__ == '__main__':
-    am = [
+    G = [
         [1, 0, 1, 1, 1, 1],
         [0, 1, 0, 1, 1, 1],
         [1, 0, 1, 0, 1, 1],
@@ -30,15 +17,10 @@ if __name__ == '__main__':
         [1, 1, 1, 1, 1, 1],
         [1, 1, 1, 1, 1, 1],
     ]
-
-    # Initial assignment of cliques - 0 means unassigned
-    n = len(am)
-    d = {i:[] for i in range(1, n+1)}; d[1].append(0)
-    cl = [1]+[0]*(n-1)
-    print(bt(cl, 1, n+1))
-
-    # If you need the cliques
-    n = len(am)
-    d = {i:[] for i in range(1, n+1)}; d[1].append(0)
-    cl = [1]+[0]*(n-1)
-    print(bt_show_clique(cl, 1, (n+1, None)))
+    n = len(G); am = [0]*n
+    for i in range(n):
+        for j in range(n):
+            if G[i][j]: am[i] |= 1<<j
+    Z, A = n+1, []; cl = [0]*n; cm = [0]*(n+1)
+    bt(0, 0)
+    print(Z, A) # finalized assignments
