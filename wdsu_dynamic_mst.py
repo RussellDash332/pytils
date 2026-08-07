@@ -9,8 +9,8 @@ class WDSU:
         return v
     def dc(s, v):
         t = []; c = v
-        while p[c] != c: t.append(c); c = p[c]
-        while t: u = t.pop(); s[p[u]] -= s[u]
+        while s.p[c] != c: t.append(c); c = s.p[c]
+        while t: u = t.pop(); s.s[s.p[u]] -= s.s[u]
     def co(s, v, w=10**9-1):
         while s.w[v] <= w: s.s[s.p[v]] += s.s[v]; v = s.p[v]
         return v
