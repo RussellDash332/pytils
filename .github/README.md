@@ -386,7 +386,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     Use segment trees to compute the area of the union of $n$ axis-parallel rectangles in $O(n \log n)$ time.
 
-    > Kattis problem(s) to try on: [veggspjold](https://open.kattis.com/problems/veggspjold)
+    > Kattis problem(s) to try on: [veggspjold](https://open.kattis.com/problems/veggspjold), [longexposure](https://open.kattis.com/problems/longexposure)
 
 #### 3D
 - [`compgeo_3d_projection_intersection`](https://github.com/RussellDash332/pytils/blob/main/compgeo_3d_projection_intersection.py)
