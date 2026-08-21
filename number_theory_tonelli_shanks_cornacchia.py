@@ -8,6 +8,8 @@ For non-prime integers, don't use Tonelli-Shanks :)
 '''
 
 def tonelli_shanks(n, p):
+    if p == 2: return n%2
+    if n == 0: return 0
     if pow(n, (p-1)//2, p) == p-1: return None # n is a quadratic non-residue
     q = p-1; s=0
     while q%2 == 0: q //= 2; s += 1

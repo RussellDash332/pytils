@@ -1,9 +1,9 @@
 # Supposedly len(b) == len(a[0])
 def mul(a, b):
     c = [[0]*len(b[0]) for _ in range(len(a))]
-    for i in range(len(a)):
-        for j in range(len(b[0])):
-            for k in range(len(b)): c[i][j] += a[i][k]*b[k][j]
+    for i, ci in enumerate(c):
+        for j, ax in enumerate(a[i]):
+            for k, by in enumerate(b[j]): ci[k] += ax*by
     return c
 
 # Supposedly len(m) == len(m[0])
@@ -28,6 +28,19 @@ def det(a):
         for j in range(n):
             if j != i and abs(a[j][i]) > eps:
                 for k in range(i+1, n): a[j][k] -= a[i][k]*a[j][i]
+    return z
+
+# arbitrary modulo
+def det(a, MOD):
+    z = 1; n = len(a)
+    for i in range(n):
+        for j in range(i+1, n):
+            while a[j][i]:
+                q = a[i][i]//a[j][i]
+                for k in range(i, n): a[i][k] = (a[i][k]-q*a[j][k])%MOD
+                a[i], a[j] = a[j], a[i]; z = -z%MOD
+        if not a[i][i]: return 0
+        z = z*a[i][i]%MOD
     return z
 
 # Kirchoff's matrix tree theorem

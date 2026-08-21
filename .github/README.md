@@ -254,6 +254,10 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
     > Kattis problem(s) to try on: [stringmultimatching](https://open.kattis.com/problems/stringmultimatching)
 
 #### Miscellaneous
+- [`lyndon_factorization`](https://github.com/RussellDash332/pytils/blob/main/lyndon_factorization.py)
+
+    Computes the Lyndon factorization of a given string with length $n$ in $O(n)$ time.
+
 - [`manacher_subpalindromes`](https://github.com/RussellDash332/pytils/blob/main/manacher_subpalindromes.py)
 
     Enumerates all palindromic substrings of a given string with length $n$ in $O(n)$ time.
@@ -279,7 +283,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 ### Linear Algebra
 - [`matrix_exponentiation_determinant_kirchoff`](https://github.com/RussellDash332/pytils/blob/main/matrix_exponentiation_determinant_kirchoff.py)
 
-    Basic matrix (fast) exponentiation, determinant computation, and Kirchoff's tree theorem. The last two run in $O(N^3)$ time where $N$ is the size of the (square) matrix.
+    Basic matrix (fast) exponentiation, determinant computation, and Kirchoff's tree theorem. The last two run in $O(N^3)$ time where $N$ is the size of the (square) matrix. If the modulo is not prime, computing the determinant will take $O(N^3 \log N)$ time instead.
 
     > Kattis problem(s) to try on: [statetransfer](https://open.kattis.com/problems/statetransfer), [numbers2](https://open.kattis.com/problems/numbers2), [organising](https://open.kattis.com/problems/organising), [unicycliccount](https://open.kattis.com/problems/unicycliccount)
 
