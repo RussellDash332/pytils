@@ -15,7 +15,10 @@ for i, (a, b) in enumerate(uv_pairs):
 
 def find(i):
     if par[i] == i: return i
-    par[i] = find(par[i]); return par[i]
+    v = [i]
+    while par[i] != i: i = par[i]; v += [i]
+    for u in v: par[u] = i
+    return i
 
 while s:
     ub, p = s.pop(); u = ub//2
