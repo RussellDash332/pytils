@@ -70,6 +70,12 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [forgottenhomework](https://open.kattis.com/problems/forgottenhomework), [iqtest](https://open.kattis.com/problems/iqtest)
 
+- [`error_correction_berlekamp_welch`](https://github.com/RussellDash332/pytils/blob/main/error_correction_berlekamp_welch.py)
+
+    Berlekamp-Welch algorithm to perform error correction on $Q \ge K+2L$ data points with at most $L$ erroneous data to derive a hidden polynomial of degree at most $K-1$ in $O(Q(K+2L)^2)$ time.
+
+    > Kattis problem(s) to try on: [pirates](https://open.kattis.com/problems/pirates)
+
 - [`number_theory_mobius_function`](https://github.com/RussellDash332/pytils/blob/main/number_theory_mobius_function.py)
 
     Computes the Möbius function and stores them in an array, runs in $O(n\log\log n)$ time.
@@ -143,7 +149,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
 - [`treap`](https://github.com/RussellDash332/pytils/blob/main/treap.py)
 
-    Quick implementation of a treap data structure.
+    Quick implementation of a treap data structure with several functionalities: rank, select, reverse, inorder, split, etc. All operations run in $O(\log n)$ time except for inorder which runs in $O(n)$ time.
 
     > Kattis problem(s) to try on: [spilahlustun](https://open.kattis.com/problems/spilahlustun)
 
@@ -350,11 +356,23 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 
     > Kattis problem(s) to try on: [segmentintersection](https://open.kattis.com/problems/segmentintersection), [target](https://open.kattis.com/problems/target), [carlsvacation](https://open.kattis.com/problems/carlsvacation)
 
+- [`compgeo_2d_segment_crossings_bentley_ottmann`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_segment_crossings_bentley_ottmann.py)
+
+    Finds all the $M$ intersections/crossings between any pair of $N$ line segments in $O((N+M) \log(N))$ time. Makes use of the treap data structure.
+
+    > Kattis problem(s) to try on: [umferdarljos](https://open.kattis.com/problems/umferdarljos)
+
 - [`compgeo_2d_closest_pair`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_closest_pair.py)
 
     Closest pair problem. Given $n$ 2D-coordinates, find the closest pair among all $O(n^2)$ possible pairs. Runs in $O(n\log n)$ time.
 
     > Kattis problem(s) to try on: [closestpair1](https://open.kattis.com/problems/closestpair1), [closestpair2](https://open.kattis.com/problems/closestpair2)
+
+- [`compgeo_2d_closest_triple](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_closest_triple.py)
+
+    Closest triple problem. Given $n$ 2D-coordinates, find three vertices with minimum perimeter among all $O(n^3)$ possible pairs. Runs in $O(n\log n)$ time.
+
+    > Kattis problem(s) to try on: [jurassicpark](https://open.kattis.com/problems/jurassicpark)
 
 - [`compgeo_2d_furthest_pair`](https://github.com/RussellDash332/pytils/blob/main/compgeo_2d_furthest_pair.py)
 
@@ -402,6 +420,16 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
     - point-plane distance
     - line-plane intersection
 
+- [`compgeo_3d_great_circle`](https://github.com/RussellDash332/pytils/blob/main/compgeo_3d_great_circle.py)
+
+    Solves different great-circle-related queries in 3D coordinate system:
+    - point in polygon (island?)
+    - point-point distance 
+    - point-segment distance
+    - point-to-segment projection
+
+    > Kattis problem(s) to try on: [marooned](https://open.kattis.com/problems/marooned)
+
 - [`compgeo_3d_convex_hull`](https://github.com/RussellDash332/pytils/blob/main/compgeo_3d_convex_hull.py)
 
     Given $n$ 3D-coordinates where no four points lie on the same plane, compute its convex hull (smallest polyhedron that contains all points). KACTL version runs in $O(n^2)$ time, but an expected $O(n \log n)$ time algorithm exists as well.
@@ -418,7 +446,7 @@ Classification taken from [`cp-algorithms`](https://cp-algorithms.com/).
 #### Graph Representation
 - [`graph_adjacency_list`](https://github.com/RussellDash332/pytils/blob/main/graph_adjacency_list.py)
 
-    Basic implementation of an adjacency list as a list of lists/dictionaries.
+    Basic implementation of an adjacency list as a list of lists/dictionaries. Memory-efficient implementation is also available where we avoid using 2D lists to store the adjacency list.
 
 #### Graph Traversal
 - [`traversal_bfs`](https://github.com/RussellDash332/pytils/blob/main/traversal_bfs.py)
