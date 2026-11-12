@@ -13,7 +13,7 @@ L = (N-1).bit_length()+1
 jmp = [[-1]*L for _ in range(N)]
 
 # preprocess with DFS
-stk = [(0, 0, T:=0)]
+stk = [(root, root, T:=0)]
 while stk:
     u, p, b = stk.pop()
     if b: tout[u] = (T:=T+1)
